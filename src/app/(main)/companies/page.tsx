@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { COMPANIES, Company, Major, ALL_DOMAINS, ALL_ROLE_TYPES } from '@/lib/company-data';
+import { COMPANIES, Company, Major, Level, ALL_DOMAINS, ALL_ROLE_TYPES } from '@/lib/company-data';
 import { useUserStore } from '@/store/use-user-store';
 import { ChevronDown, ChevronUp, Bookmark, Star, MapPin, Building2, GraduationCap, Briefcase, Filter, X, Users, TrendingUp, Clock } from 'lucide-react';
 import Link from 'next/link';
@@ -19,6 +19,7 @@ export default function CompaniesPage() {
     const [difficultyFilter, setDifficultyFilter] = useState<string>('All');
     const [domainFilter, setDomainFilter] = useState<string>('All');
     const [internFriendlyFilter, setInternFriendlyFilter] = useState<boolean | null>(null);
+    const [levelFilter, setLevelFilter] = useState<string>('All');
 
     const { isLoggedIn } = useUserStore();
 
@@ -31,14 +32,15 @@ export default function CompaniesPage() {
         const matchesDifficulty = difficultyFilter === 'All' || c.difficulty === difficultyFilter;
         const matchesDomain = domainFilter === 'All' || c.domains.includes(domainFilter);
         const matchesInternFriendly = internFriendlyFilter === null || c.internFriendly === internFriendlyFilter;
+        const matchesLevel = levelFilter === 'All' || (c.levels && c.levels.includes(levelFilter as Level));
 
         return matchesMajor && matchesSearch && matchesLocation &&
-            matchesCompanyType && matchesDifficulty && matchesDomain && matchesInternFriendly;
+            matchesCompanyType && matchesDifficulty && matchesDomain && matchesInternFriendly && matchesLevel;
     });
 
     const hasActiveFilters = locationFilter !== 'All' ||
         companyTypeFilter !== 'All' || difficultyFilter !== 'All' ||
-        domainFilter !== 'All' || internFriendlyFilter !== null;
+        domainFilter !== 'All' || internFriendlyFilter !== null || levelFilter !== 'All';
 
     const clearAllFilters = () => {
         setLocationFilter('All');
@@ -46,6 +48,7 @@ export default function CompaniesPage() {
         setDifficultyFilter('All');
         setDomainFilter('All');
         setInternFriendlyFilter(null);
+        setLevelFilter('All');
     };
 
     const toggleCardExpand = (id: string) => {
@@ -213,6 +216,26 @@ export default function CompaniesPage() {
                                         <option value="All">All</option>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
+                                    </select>
+                                </div>
+
+                                {/* Level Filter */}
+                                <div>
+                                    <label className="text-xs text-muted-foreground mb-1 block">Level</label>
+                                    <select
+                                        value={levelFilter}
+                                        onChange={e => setLevelFilter(e.target.value)}
+                                        className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
+                                    >
+                                        <option value="All">All Levels</option>
+                                        <option value="Internship">Internship</option>
+                                        <option value="Entry Level">Entry Level</option>
+                                        <option value="Mid Level">Mid Level</option>
+                                        <option value="Senior">Senior</option>
+                                        <option value="Principal">Principal</option>
+                                        <option value="Manager">Manager</option>
+                                        <option value="Director">Director</option>
+                                        <option value="Executive">Executive</option>
                                     </select>
                                 </div>
                             </div>

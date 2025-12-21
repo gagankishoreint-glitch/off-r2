@@ -9,6 +9,7 @@ export type CompanyType = 'Product' | 'Startup' | 'PSU' | 'Service';
 export type Difficulty = 'Easy' | 'Medium' | 'Hard';
 export type WLB = 'Green' | 'Yellow' | 'Red';
 export type Learning = 'High' | 'Medium' | 'Low';
+export type Level = 'Internship' | 'Entry Level' | 'Mid Level' | 'Senior' | 'Principal' | 'Manager' | 'Director' | 'Executive';
 
 export interface Company {
     id: string;
@@ -21,6 +22,7 @@ export interface Company {
     companyType: CompanyType;
     difficulty: Difficulty;
     internFriendly: boolean;
+    levels?: Level[]; // Experience levels offered
     salary: {
         minLPA: number;
         maxLPA: number;
@@ -75,6 +77,7 @@ const CS_TIER1: Company[] = [
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal'],
         salary: { minLPA: 32, maxLPA: 60, inHandPercent: 70 },
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Search, cloud and ads. Top-tier pay and benefits.',
@@ -1290,4 +1293,19 @@ export const COMPANIES: Company[] = [
 
 // Get unique values for filters
 export const ALL_DOMAINS = Array.from(new Set(COMPANIES.flatMap(c => c.domains))).sort();
+
+// Simplified Domain Categories for Better Filtering
+export const SIMPLIFIED_DOMAINS = [
+    'Software Engineering',
+    'AI/ML & Data',
+    'Cloud & Infrastructure',
+    'Finance & Trading',
+    'Security',
+    'Hardware & Semiconductors',
+    'Mobile',
+    'Product & Design',
+    'Research',
+    'Other'
+] as const;
+
 export const ALL_ROLE_TYPES = Array.from(new Set(COMPANIES.flatMap(c => c.roleTypes))).sort();
