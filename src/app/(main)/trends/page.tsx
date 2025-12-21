@@ -253,27 +253,87 @@ export default function TrendsPage() {
                     </div>
                 )}
 
-                {/* Company Logos Grid */}
-                <div className="mt-16 pt-12 border-t border-border">
+
+                {/* Company Logos Grid with Animation */}
+                <div className="mt-16 pt-12 border-t border-border overflow-hidden">
                     <h3 className="text-center text-sm font-semibold text-muted-foreground tracking-wider uppercase mb-8">
                         Companies on Off-Radar
                     </h3>
-                    <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-6 items-center justify-items-center opacity-60">
-                        {['Google', 'Amazon', 'Microsoft', 'Meta', 'Apple', 'Netflix', 'Adobe', 'Uber', 'Airbnb', 'Stripe', 'Shopify', 'Dropbox', 'Atlassian', 'Snowflake', 'Databricks', 'OpenAI', 'Nvidia', 'Intel', 'AMD', 'Samsung'].map((company) => (
-                            <div key={company} className="text-center p-3 rounded-lg hover:bg-muted transition-colors">
-                                <div className="text-2xl font-bold text-foreground">
-                                    {company.charAt(0)}
+                    <div className="relative">
+                        {/* Animated Logo Grid */}
+                        <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-8 items-center justify-items-center">
+                            {[
+                                { name: 'Google', color: '#4285F4', delay: '0s' },
+                                { name: 'Amazon', color: '#FF9900', delay: '0.1s' },
+                                { name: 'Microsoft', color: '#00A4EF', delay: '0.2s' },
+                                { name: 'Meta', color: '#0668E1', delay: '0.3s' },
+                                { name: 'Apple', color: '#555', delay: '0.4s' },
+                                { name: 'Netflix', color: '#E50914', delay: '0.5s' },
+                                { name: 'Adobe', color: '#FF0000', delay: '0.6s' },
+                                { name: 'Uber', color: '#000000', delay: '0.7s' },
+                                { name: 'Airbnb', color: '#FF5A5F', delay: '0.8s' },
+                                { name: 'Stripe', color: '#635BFF', delay: '0.9s' },
+                                { name: 'Shopify', color: '#7AB55C', delay: '1s' },
+                                { name: 'Dropbox', color: '#0061FF', delay: '1.1s' },
+                                { name: 'Atlassian', color: '#0052CC', delay: '1.2s' },
+                                { name: 'Snowflake', color: '#29B5E8', delay: '1.3s' },
+                                { name: 'Databricks', color: '#FF3621', delay: '1.4s' },
+                                { name: 'OpenAI', color: '#74AA9C', delay: '1.5s' },
+                                { name: 'Nvidia', color: '#76B900', delay: '1.6s' },
+                                { name: 'Intel', color: '#0071C5', delay: '1.7s' },
+                                { name: 'AMD', color: '#ED1C24', delay: '1.8s' },
+                                { name: 'Samsung', color: '#1428A0', delay: '1.9s' },
+                            ].map((company, idx) => (
+                                <div
+                                    key={company.name}
+                                    className="group relative"
+                                    style={{
+                                        animation: `fadeInUp 0.6s ease-out ${company.delay} both, float 3s ease-in-out infinite`,
+                                        animationDelay: company.delay
+                                    }}
+                                >
+                                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-muted group-hover:bg-background flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg border border-border">
+                                        <div
+                                            className="w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center font-bold text-lg"
+                                            style={{ backgroundColor: `${company.color}15`, color: company.color }}
+                                        >
+                                            {company.name.charAt(0)}
+                                        </div>
+                                    </div>
+                                    <div className="text-[9px] md:text-[10px] text-muted-foreground mt-2 text-center font-medium">
+                                        {company.name}
+                                    </div>
                                 </div>
-                                <div className="text-[10px] text-muted-foreground mt-1">
-                                    {company}
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                    <p className="text-center text-xs text-muted-foreground mt-8">
+                    <p className="text-center text-xs text-muted-foreground mt-12">
                         Data sourced from <a href="https://www.levels.fyi" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Levels.fyi</a>, industry reports, and community contributions
                     </p>
                 </div>
+
+                {/* Keyframes for animations */}
+                <style jsx>{`
+                    @keyframes fadeInUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                    
+                    @keyframes float {
+                        0%, 100% {
+                            transform: translateY(0px);
+                        }
+                        50% {
+                            transform: translateY(-8px);
+                        }
+                    }
+                `}</style>
             </div>
         </div>
     );
