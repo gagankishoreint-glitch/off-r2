@@ -24,10 +24,9 @@ export function HorizontalNav() {
         { href: "/companies", label: "Explore Companies" },
         { href: "/trends", label: "Market Trends" },
         { href: "/calculator", label: "CTC Calculator" },
-        ...(isLoggedIn ? [{ href: "/dashboard", label: "My Dashboard" }] : []),
-        { href: "/about", label: "About Us" },
         { href: "/compare", label: "Compare Offers" },
-        { href: "/contact", label: "Contact" },
+        { href: "/about", label: "About Us" },
+        ...(isLoggedIn ? [{ href: "/dashboard", label: "My Dashboard" }] : []),
     ];
 
     return (
