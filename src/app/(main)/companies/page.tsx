@@ -274,100 +274,102 @@ function CompanyCard({
     getDifficultyStyle: (d: string) => string;
 }) {
     return (
-        <div className="bg-card border border-border rounded-xl p-6 hover:border-foreground/20 transition-colors">
-            {/* Header Row */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                <div>
-                    <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-xl font-bold text-foreground">{company.name}</h3>
-                        {company.internFriendly && (
-                            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
-                                Intern Friendly
-                            </span>
-                        )}
-                    </div>
-                    <p className="text-sm text-muted-foreground">{company.description}</p>
-                </div>
-
-                {/* Salary */}
-                <div className="text-right shrink-0">
-                    <div className="text-lg font-bold text-foreground">
-                        ₹{company.salary.minLPA} - {company.salary.maxLPA} LPA
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                        ~{company.salary.inHandPercent}% in-hand
-                    </div>
-                </div>
-            </div>
-
-            {/* Info Row */}
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                <span className="flex items-center gap-1">
-                    <MapPin className="w-4 h-4" />
-                    {company.location}
-                </span>
-                <span className="flex items-center gap-1">
-                    <Building2 className="w-4 h-4" />
-                    {company.companyType}
-                </span>
-                <span className={`flex items-center gap-1 ${getDifficultyStyle(company.difficulty)}`}>
-                    <TrendingUp className="w-4 h-4" />
-                    {company.difficulty}
-                </span>
-                <span className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ${getWLBStyle(company.culture.wlb)}`}>
-                    <Clock className="w-3 h-3" />
-                    WLB: {company.culture.wlb}
-                </span>
-            </div>
-
-            {/* Tags Row */}
-            <div className="flex flex-wrap gap-2 mb-4">
-                {company.majors.map(m => (
-                    <span key={m} className="px-2 py-1 text-xs bg-muted rounded-lg text-foreground font-medium">
-                        {m}
-                    </span>
-                ))}
-                {company.domains.slice(0, 3).map(d => (
-                    <span key={d} className="px-2 py-1 text-xs bg-muted/50 rounded-lg text-muted-foreground">
-                        {d}
-                    </span>
-                ))}
-            </div>
-
-            {/* Expand/Collapse Button */}
-            <button
-                onClick={onToggle}
-                className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
-            >
-                {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                {isExpanded ? 'Show less' : 'Why this company?'}
-            </button>
-
-            {/* Expanded Content */}
-            {isExpanded && company.whyJoin && (
-                <div className="mt-4 pt-4 border-t border-border">
-                    <h4 className="text-sm font-medium text-foreground mb-2">Why Join?</h4>
-                    <ul className="grid md:grid-cols-2 gap-2">
-                        {company.whyJoin.map((reason, i) => (
-                            <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                                <span className="text-green-500 mt-0.5">•</span>
-                                {reason}
-                            </li>
-                        ))}
-                    </ul>
-
-                    <div className="mt-4 grid md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <span className="text-muted-foreground">Role Types: </span>
-                            <span className="text-foreground">{company.roleTypes.join(', ')}</span>
+        <Link href={`/companies/${company.id}`} className="block">
+            <div className="bg-card border border-border rounded-xl p-6 hover:border-foreground/20 transition-colors cursor-pointer">
+                {/* Header Row */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div>
+                        <div className="flex items-center gap-3 mb-2">
+                            <h3 className="text-xl font-bold text-foreground">{company.name}</h3>
+                            {company.internFriendly && (
+                                <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                    Intern Friendly
+                                </span>
+                            )}
                         </div>
-                        <div>
-                            <span className="text-muted-foreground">Learning: </span>
-                            <span className="text-foreground">{company.culture.learning}</span>
+                        <p className="text-sm text-muted-foreground">{company.description}</p>
+                    </div>
+
+                    {/* Salary */}
+                    <div className="text-right shrink-0">
+                        <div className="text-lg font-bold text-foreground">
+                            ₹{company.salary.minLPA} - {company.salary.maxLPA} LPA
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                            ~{company.salary.inHandPercent}% in-hand
                         </div>
                     </div>
                 </div>
-            )}
-        </div>
+
+                {/* Info Row */}
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        {company.location}
+                    </span>
+                    <span className="flex items-center gap-1">
+                        <Building2 className="w-4 h-4" />
+                        {company.companyType}
+                    </span>
+                    <span className={`flex items-center gap-1 ${getDifficultyStyle(company.difficulty)}`}>
+                        <TrendingUp className="w-4 h-4" />
+                        {company.difficulty}
+                    </span>
+                    <span className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ${getWLBStyle(company.culture.wlb)}`}>
+                        <Clock className="w-3 h-3" />
+                        WLB: {company.culture.wlb}
+                    </span>
+                </div>
+
+                {/* Tags Row */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                    {company.majors.map(m => (
+                        <span key={m} className="px-2 py-1 text-xs bg-muted rounded-lg text-foreground font-medium">
+                            {m}
+                        </span>
+                    ))}
+                    {company.domains.slice(0, 3).map(d => (
+                        <span key={d} className="px-2 py-1 text-xs bg-muted/50 rounded-lg text-muted-foreground">
+                            {d}
+                        </span>
+                    ))}
+                </div>
+
+                {/* Expand/Collapse Button */}
+                <button
+                    onClick={onToggle}
+                    className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1"
+                >
+                    {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    {isExpanded ? 'Show less' : 'Why this company?'}
+                </button>
+
+                {/* Expanded Content */}
+                {isExpanded && company.whyJoin && (
+                    <div className="mt-4 pt-4 border-t border-border">
+                        <h4 className="text-sm font-medium text-foreground mb-2">Why Join?</h4>
+                        <ul className="grid md:grid-cols-2 gap-2">
+                            {company.whyJoin.map((reason, i) => (
+                                <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                                    <span className="text-green-500 mt-0.5">•</span>
+                                    {reason}
+                                </li>
+                            ))}
+                        </ul>
+
+                        <div className="mt-4 grid md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span className="text-muted-foreground">Role Types: </span>
+                                <span className="text-foreground">{company.roleTypes.join(', ')}</span>
+                            </div>
+                            <div>
+                                <span className="text-muted-foreground">Learning: </span>
+                                <span className="text-foreground">{company.culture.learning}</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </Link>
     );
 }

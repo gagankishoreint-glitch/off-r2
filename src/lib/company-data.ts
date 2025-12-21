@@ -453,6 +453,7 @@ const CS_TIER2: Company[] = [
         salary: { minLPA: 18, maxLPA: 45, inHandPercent: 80 },
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Tech hiring platform for developers.',
+        whyJoin: ['Top tech hiring platform', 'Strong engineering culture', 'Remote-friendly'],
     },
     {
         id: 'glance',
@@ -468,6 +469,7 @@ const CS_TIER2: Company[] = [
         salary: { minLPA: 20, maxLPA: 45, inHandPercent: 78 },
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Lock-screen content platform.',
+        whyJoin: ['Unicorn startup', 'InMobi pedigree', 'Consumer-scale tech'],
     },
     {
         id: 'trellix',
@@ -483,6 +485,7 @@ const CS_TIER2: Company[] = [
         salary: { minLPA: 18, maxLPA: 40, inHandPercent: 80 },
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Cybersecurity and threat intelligence.',
+        whyJoin: ['Cybersecurity leader', 'Good WLB', 'Learn security at scale'],
     },
     {
         id: 'adobe',

@@ -27,7 +27,7 @@ export default function ComparePage() {
         const title = `${fullOfferA.company} vs ${fullOfferB.company}`;
         const docId = createDocument(title);
         updateDocument(docId, { blocks });
-        router.push(`/app/${docId}`);
+        router.push(`/dashboard`);
     };
 
     return (
