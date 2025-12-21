@@ -213,6 +213,34 @@ export default function CompanyDetailPage() {
                     </div>
                 )}
 
+                {/* Internship Opportunities (New Section) */}
+                {company.internship && (
+                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/10 border border-indigo-100 dark:border-indigo-800 rounded-xl p-6 mb-8">
+                        <h3 className="text-lg font-semibold text-indigo-700 dark:text-indigo-400 mb-4 flex items-center gap-2">
+                            Briefcase className="w-5 h-5" /
+                            Internship Opportunities
+                        </h3>
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                            <div>
+                                <h4 className="font-semibold text-foreground text-lg mb-1">{company.internship.role}</h4>
+                                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                                    {company.internship.duration && (
+                                        <span className="flex items-center gap-1">
+                                            <Clock className="w-4 h-4" /> {company.internship.duration}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="bg-background/80 backdrop-blur-sm p-4 rounded-lg border border-indigo-100 dark:border-indigo-800 shadow-sm min-w-[200px] text-center">
+                                <span className="block text-xs text-muted-foreground uppercase tracking-wider mb-1">Monthly Stipend</span>
+                                <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                                    ₹{(company.internship.minStipend / 1000).toFixed(0)}k - {(company.internship.maxStipend / 1000).toFixed(0)}k
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Deep Dive Analysis (New Section) */}
                 {company.detailedAnalysis && (
                     <div className="mb-12">

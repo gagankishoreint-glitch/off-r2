@@ -2,7 +2,7 @@
 // FILTER-COMPATIBLE COMPANY DATA MODEL
 // ============================================
 
-export type Major = 'CS' | 'ECE' | 'EEE' | 'Core';
+export type Major = 'CS' | 'ECE' | 'EEE' | 'Core' | 'Math' | 'Finance';
 export type Tier = 'Tier 1' | 'Tier 2' | 'Tier 3';
 export type LocationType = 'India' | 'Global';
 export type CompanyType = 'Product' | 'Startup' | 'PSU' | 'Service';
@@ -39,6 +39,12 @@ export interface Company {
         recentDevelopments: string[];
         highlight?: string;
     };
+    internship?: {
+        role: string;
+        minStipend: number;
+        maxStipend: number;
+        duration?: string;
+    };
 }
 
 export const TIER_TOOLTIPS: Record<Tier, string> = {
@@ -58,7 +64,13 @@ const CS_TIER1: Company[] = [
         tier: 'Tier 1',
         majors: ['CS'],
         domains: ['AI/ML', 'Cloud', 'Systems', 'Backend'],
-        roleTypes: ['SWE', 'Backend', 'AI/ML', 'Full-Stack'],
+        roleTypes: ['SWE', 'Research', 'SRE'],
+        internship: {
+            role: "Software Engineering Intern",
+            minStipend: 100000,
+            maxStipend: 125000,
+            duration: "10-12 Weeks"
+        },
         location: 'India',
         companyType: 'Product',
         difficulty: 'Hard',
@@ -302,6 +314,11 @@ const CS_TIER1: Company[] = [
         majors: ['CS'],
         domains: ['Social', 'Systems', 'AI/ML'],
         roleTypes: ['SWE', 'ML', 'Backend'],
+        internship: {
+            role: "Software Engineering Intern",
+            minStipend: 100000,
+            maxStipend: 150000,
+        },
         location: 'India',
         companyType: 'Product',
         difficulty: 'Hard',
@@ -318,6 +335,11 @@ const CS_TIER1: Company[] = [
         majors: ['CS'],
         domains: ['AI/ML', 'Automation', 'GenAI'],
         roleTypes: ['SWE', 'ML'],
+        internship: {
+            role: "AI Engineering Intern",
+            minStipend: 80000,
+            maxStipend: 120000,
+        },
         location: 'India',
         companyType: 'Startup',
         difficulty: 'Hard',
@@ -332,8 +354,14 @@ const CS_TIER1: Company[] = [
         name: 'Airbnb',
         tier: 'Tier 1',
         majors: ['CS'],
-        domains: ['Consumer', 'Backend', 'Data'],
-        roleTypes: ['SWE', 'Full-Stack'],
+        domains: ['Cloud', 'Backend', 'Systems'],
+        roleTypes: ['SDE', 'Cloud Support'],
+        internship: {
+            role: "SDE Intern",
+            minStipend: 80000,
+            maxStipend: 110000,
+            duration: "6 Months / 2 Months"
+        },
         location: 'India',
         companyType: 'Product',
         difficulty: 'Hard',
@@ -350,6 +378,12 @@ const CS_TIER1: Company[] = [
         majors: ['CS', 'Math', 'Finance'],
         domains: ['Fintech', 'Systems', 'Quant'],
         roleTypes: ['Analyst', 'Associate', 'Quant'],
+        internship: {
+            role: "Systems Intern / Quant Intern",
+            minStipend: 150000,
+            maxStipend: 200000,
+            duration: "10 Weeks"
+        },
         location: 'India',
         companyType: 'Product',
         difficulty: 'Medium', // Often mass hiring for analysts
@@ -385,6 +419,11 @@ const CS_TIER2: Company[] = [
         majors: ['CS'],
         domains: ['Cloud', 'Database', 'Enterprise'],
         roleTypes: ['MTS', 'SWE', 'Cloud'],
+        internship: {
+            role: "Project Intern",
+            minStipend: 50000,
+            maxStipend: 80000,
+        },
         location: 'India',
         companyType: 'Product',
         difficulty: 'Medium',
@@ -399,8 +438,14 @@ const CS_TIER2: Company[] = [
         name: 'HackerRank',
         tier: 'Tier 2',
         majors: ['CS'],
-        domains: ['EdTech', 'SaaS', 'DevTools'],
+        domains: ['OS', 'Cloud', 'AI/ML', 'Gaming'],
         roleTypes: ['SWE', 'Product'],
+        internship: {
+            role: "Software Engineering Intern",
+            minStipend: 125000,
+            maxStipend: 150000,
+            duration: "8-12 Weeks"
+        },
         location: 'India',
         companyType: 'Product',
         difficulty: 'Medium',
@@ -483,6 +528,11 @@ const CS_TIER2: Company[] = [
         salary: { minLPA: 30, maxLPA: 70, inHandPercent: 72 },
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Mobility, backend systems and market platforms.',
+        internship: {
+            role: "Software Engineer Intern",
+            minStipend: 160000,
+            maxStipend: 160000,
+        },
     },
     {
         id: 'mongodb',
@@ -581,9 +631,15 @@ const CS_TIER3: Company[] = [
         id: 'phonepe',
         name: 'PhonePe',
         tier: 'Tier 3',
-        majors: ['CS'],
-        domains: ['Fintech', 'Payments', 'UPI'],
-        roleTypes: ['SWE', 'Payments', 'Data'],
+        majors: ['CS', 'ECE', 'EEE'],
+        domains: ['Fintech', 'Systems', 'Web'],
+        roleTypes: ['Member Technical', 'FTE'],
+        internship: {
+            role: "System Engineer Intern",
+            minStipend: 150000,
+            maxStipend: 200000,
+            duration: "6 Months"
+        },
         location: 'India',
         companyType: 'Startup',
         difficulty: 'Easy',
