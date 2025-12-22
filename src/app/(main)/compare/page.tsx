@@ -32,6 +32,146 @@ const DEFAULT_PRIORITIES: OfferPriorities = {
     stability: 50
 };
 
+const getDynamicLabel = (offer: Partial<Offer>, defaultLabel: string) => {
+    if (!offer.company) return defaultLabel;
+    const company = COMPANIES.find(c => c.name.toLowerCase() === offer.company?.toLowerCase());
+
+    if (company?.tier === 'Tier 1') return 'Brand Heavy';
+    if (company?.companyType === 'Startup') return 'High Growth / High Risk';
+    if (company?.companyType === 'Service') return 'Stable Enterprise';
+    if ((offer.ctc || 0) > 30) return 'Cash Heavy';
+
+    return defaultLabel;
+};
+
+const OfferInputCard = ({
+    label,
+    offer,
+    setOffer,
+    defaultLabel
+}: {
+    label: string,
+    offer: Partial<Offer>,
+    setOffer: (o: Partial<Offer>) => void,
+    defaultLabel: string
+}) => {
+    const dynamicLabel = getDynamicLabel(offer, defaultLabel);
+
+    return (
+        <div className="bg-white dark:bg-card p-6 rounded-xl shadow-sm border border-border">
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-bold">{label}</h2>
+                <span className="text-xs font-medium px-2 py-1 bg-muted rounded text-muted-foreground uppercase tracking-wide">
+                    {dynamicLabel}
+                </span>
+            </div>
+
+            <div className="space-y-4">
+                {/* C1: Company & Role */}
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="text-xs text-muted-foreground mb-1 block">Company</label>
+                        <div className="relative group">
+                            <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+                            <input
+                                className="w-full pl-9 p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
+                                placeholder="e.g. Google"
+                                value={offer.company || ''}
+                                onChange={e => setOffer({ ...offer, company: e.target.value })}
+                                list="companies-list"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label className="text-xs text-muted-foreground mb-1 block">Role / Level</label>
+                        <input
+                            className="w-full p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
+                            placeholder="e.g. SDE-1"
+                            value={offer.role || ''}
+                            onChange={e => setOffer({ ...offer, role: e.target.value })}
+                        />
+                    </div>
+                </div>
+
+                {/* C2: CTC & Location */}
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="text-xs text-muted-foreground mb-1 block">Total CTC (LPA)</label>
+                        <div className="relative">
+                            <span className="absolute left-3 top-3 text-xs font-bold text-muted-foreground">₹</span>
+                            <input
+                                className="w-full pl-7 p-2.5 bg-secondary/50 rounded-md border border-input text-sm font-medium"
+                                placeholder="18.5"
+                                type="number"
+                                value={offer.ctc || ''}
+                                onChange={e => setOffer({ ...offer, ctc: Number(e.target.value) })}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label className="text-xs text-muted-foreground mb-1 block">Location</label>
+                        <input
+                            className="w-full p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
+                            placeholder="e.g. Bangalore"
+                            value={offer.location || ''}
+                            onChange={e => setOffer({ ...offer, location: e.target.value })}
+                        />
+                    </div>
+                </div>
+
+                {/* C3: Experience & Bonus Toggle */}
+                <div className="grid grid-cols-2 gap-4 items-end">
+                    <div>
+                        <label className="text-xs text-muted-foreground mb-1 block">Exp. Level</label>
+                        <select
+                            className="w-full p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
+                            value={offer.experienceLevel}
+                            onChange={e => setOffer({ ...offer, experienceLevel: e.target.value })}
+                        >
+                            <option value="0-2">0-2 Years</option>
+                            <option value="2-5">2-5 Years</option>
+                            <option value="5+">5+ Years</option>
+                        </select>
+                    </div>
+                    <div className="flex items-center justify-between p-2.5 bg-secondary/30 rounded-md border border-dashed">
+                        <label className="text-xs text-muted-foreground font-medium">Includes Bonus/ESOP?</label>
+                        <button
+                            onClick={() => setOffer({ ...offer, hasBonus: !offer.hasBonus })}
+                            className={cn(
+                                "w-12 h-6 rounded-full transition-colors relative flex items-center",
+                                offer.hasBonus ? "bg-green-500" : "bg-muted-foreground/30"
+                            )}
+                        >
+                            <span className={cn(
+                                "w-4 h-4 rounded-full bg-white shadow-sm absolute transition-transform",
+                                offer.hasBonus ? "translate-x-7" : "translate-x-1"
+                            )} />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const PrioritySlider = ({ label, value, onChange, icon: Icon, color }: any) => (
+    <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+            <span className="flex items-center gap-2 font-medium text-muted-foreground">
+                <Icon className={cn("w-4 h-4", color)} /> {label}
+            </span>
+            <span className="font-bold text-foreground">{value}%</span>
+        </div>
+        <Slider
+            value={[value]}
+            onValueChange={(v) => onChange(v[0])}
+            max={100}
+            step={10}
+            className="py-1"
+        />
+    </div>
+);
+
 export default function ComparePage() {
     const router = useRouter();
     const createDocument = useDocumentStore((state) => state.createDocument);
@@ -52,146 +192,6 @@ export default function ComparePage() {
         updateDocument(docId, { blocks });
         router.push(`/app/${docId}`);
     };
-
-    const getDynamicLabel = (offer: Partial<Offer>, defaultLabel: string) => {
-        if (!offer.company) return defaultLabel;
-        const company = COMPANIES.find(c => c.name.toLowerCase() === offer.company?.toLowerCase());
-
-        if (company?.tier === 'Tier 1') return 'Brand Heavy';
-        if (company?.companyType === 'Startup') return 'High Growth / High Risk';
-        if (company?.companyType === 'Service') return 'Stable Enterprise';
-        if ((offer.ctc || 0) > 30) return 'Cash Heavy';
-
-        return defaultLabel;
-    };
-
-    const OfferInputCard = ({
-        label,
-        offer,
-        setOffer,
-        defaultLabel
-    }: {
-        label: string,
-        offer: Partial<Offer>,
-        setOffer: (o: Partial<Offer>) => void,
-        defaultLabel: string
-    }) => {
-        const dynamicLabel = getDynamicLabel(offer, defaultLabel);
-
-        return (
-            <div className="bg-white dark:bg-card p-6 rounded-xl shadow-sm border border-border">
-                <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-lg font-bold">{label}</h2>
-                    <span className="text-xs font-medium px-2 py-1 bg-muted rounded text-muted-foreground uppercase tracking-wide">
-                        {dynamicLabel}
-                    </span>
-                </div>
-
-                <div className="space-y-4">
-                    {/* C1: Company & Role */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="text-xs text-muted-foreground mb-1 block">Company</label>
-                            <div className="relative group">
-                                <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                                <input
-                                    className="w-full pl-9 p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
-                                    placeholder="e.g. Google"
-                                    value={offer.company || ''}
-                                    onChange={e => setOffer({ ...offer, company: e.target.value })}
-                                    list="companies-list"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <label className="text-xs text-muted-foreground mb-1 block">Role / Level</label>
-                            <input
-                                className="w-full p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
-                                placeholder="e.g. SDE-1"
-                                value={offer.role || ''}
-                                onChange={e => setOffer({ ...offer, role: e.target.value })}
-                            />
-                        </div>
-                    </div>
-
-                    {/* C2: CTC & Location */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="text-xs text-muted-foreground mb-1 block">Total CTC (LPA)</label>
-                            <div className="relative">
-                                <span className="absolute left-3 top-3 text-xs font-bold text-muted-foreground">₹</span>
-                                <input
-                                    className="w-full pl-7 p-2.5 bg-secondary/50 rounded-md border border-input text-sm font-medium"
-                                    placeholder="18.5"
-                                    type="number"
-                                    value={offer.ctc || ''}
-                                    onChange={e => setOffer({ ...offer, ctc: Number(e.target.value) })}
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <label className="text-xs text-muted-foreground mb-1 block">Location</label>
-                            <input
-                                className="w-full p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
-                                placeholder="e.g. Bangalore"
-                                value={offer.location || ''}
-                                onChange={e => setOffer({ ...offer, location: e.target.value })}
-                            />
-                        </div>
-                    </div>
-
-                    {/* C3: Experience & Bonus Toggle */}
-                    <div className="grid grid-cols-2 gap-4 items-end">
-                        <div>
-                            <label className="text-xs text-muted-foreground mb-1 block">Exp. Level</label>
-                            <select
-                                className="w-full p-2.5 bg-secondary/50 rounded-md border border-input text-sm"
-                                value={offer.experienceLevel}
-                                onChange={e => setOffer({ ...offer, experienceLevel: e.target.value })}
-                            >
-                                <option value="0-2">0-2 Years</option>
-                                <option value="2-5">2-5 Years</option>
-                                <option value="5+">5+ Years</option>
-                            </select>
-                        </div>
-                        <div className="flex items-center justify-between p-2.5 bg-secondary/30 rounded-md border border-dashed">
-                            <label className="text-xs text-muted-foreground font-medium">Includes Bonus/ESOP?</label>
-                            <button
-                                onClick={() => setOffer({ ...offer, hasBonus: !offer.hasBonus })}
-                                className={cn(
-                                    "w-12 h-6 rounded-full transition-colors relative flex items-center",
-                                    offer.hasBonus ? "bg-green-500" : "bg-muted-foreground/30"
-                                )}
-                            >
-                                <span className={cn(
-                                    "w-4 h-4 rounded-full bg-white shadow-sm absolute transition-transform",
-                                    offer.hasBonus ? "translate-x-7" : "translate-x-1"
-                                )} />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    };
-
-    const PrioritySlider = ({ label, value, onChange, icon: Icon, color }: any) => (
-        <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-                <span className="flex items-center gap-2 font-medium text-muted-foreground">
-                    <Icon className={cn("w-4 h-4", color)} /> {label}
-                </span>
-                <span className="font-bold text-foreground">{value}%</span>
-            </div>
-            <Slider
-                value={[value]}
-                onValueChange={(v) => onChange(v[0])}
-                max={100}
-                step={10}
-                className="py-1"
-            />
-        </div>
-    );
 
     return (
         <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 md:p-8">
