@@ -36,8 +36,7 @@ export function HorizontalNav() {
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                        <img src="/icon.png" alt="Off-Radar" className="w-8 h-8 rounded-lg shadow-sm" />
-                        <span className="font-heading font-bold text-xl tracking-tight">Off-Radar</span>
+                        <span className="font-heading font-bold text-2xl tracking-tight">Off-Radar</span>
                     </Link>
 
                     {/* Desktop Navigation */}
