@@ -24,6 +24,7 @@ export function HorizontalNav() {
         { href: "/companies", label: "Explore Companies" },
         { href: "/trends", label: "Market Trends" },
         { href: "/calculator", label: "CTC Calculator" },
+        { href: "/resume", label: "Resume Scanner" },
         { href: "/compare", label: "Compare Offers" },
         { href: "/about", label: "About Us" },
         ...(isLoggedIn ? [{ href: "/dashboard", label: "My Dashboard" }] : []),
