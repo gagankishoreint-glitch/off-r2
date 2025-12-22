@@ -9,10 +9,21 @@ export interface Offer {
     location: string;
     type: EmploymentType;
     workMode: WorkMode;
-    // Optional detailed breakdown
+    experienceLevel: string; // 0-2, 2-5, 5+
+    hasBonus: boolean; // Yes/No for variable component
+
+    // Optional detailed breakdown (Restored)
     base?: number;
-    stocks?: number; // ESOPs/RSUs
+    stocks?: number;
     joiningBonus?: number;
+}
+
+export interface OfferPriorities {
+    money: number; // 0-100
+    learning: number;
+    wlb: number;
+    brand: number;
+    stability: number;
 }
 
 export type InsightType = 'red-flag' | 'green-flag' | 'neutral' | 'hidden-truth';

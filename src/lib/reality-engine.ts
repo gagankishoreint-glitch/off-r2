@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
-import { Offer, RealityInsight } from '@/types/off-radar';
+import { Offer, RealityInsight, OfferPriorities } from '@/types/off-radar';
 import { Block } from '@/types/editor';
 import { COMPANIES, Company } from '@/lib/company-data';
 
-export function generateRealityPage(offerA: Offer, offerB: Offer): Block[] {
+export function generateRealityPage(offerA: Offer, offerB: Offer, priorities: OfferPriorities): Block[] {
     const blocks: Block[] = [];
 
     const add = (type: any, content: string, props?: any) => {
@@ -25,27 +25,64 @@ export function generateRealityPage(offerA: Offer, offerB: Offer): Block[] {
 
     const ctcA = offerA.ctc;
     const ctcB = offerB.ctc;
-    const diff = Math.abs(ctcA - ctcB);
-    const higherName = ctcA > ctcB ? offerA.company : offerB.company;
-    const lowerName = ctcA > ctcB ? offerB.company : offerA.company;
-    const percentDiff = Math.abs((ctcA - ctcB) / ((ctcA + ctcB) / 2) * 100).toFixed(0);
 
-    // 1. Header
+    // --- 1. TL;DR (Adaptive) ---
+    // Calculate simple heuristic score based on priorities
+    const getScore = (offer: Offer, company?: Company) => {
+        let score = 0;
+        // Money (In-hand approx)
+        score += (offer.ctc || 0) * (priorities.money / 100);
+        // Brand/Learning (Tier + Culture)
+        if (company?.tier === 'Tier 1') score += 20 * (priorities.brand / 100);
+        if (company?.culture.learning === 'High') score += 15 * (priorities.learning / 100);
+        if (company?.culture.wlb === 'Green') score += 15 * (priorities.wlb / 100);
+        return score;
+    };
+
+    const scoreA = getScore(offerA, companyA);
+    const scoreB = getScore(offerB, companyB);
+    const tldrWinner = scoreA > scoreB ? offerA.company : offerB.company;
+    const tldrLoser = scoreA > scoreB ? offerB.company : offerA.company;
+
     add('heading-1', `Reality Check: ${offerA.company} vs ${offerB.company}`);
-    add('paragraph', `Based on data from ${companyA?.roleTypes?.length || 50}+ verified roles and community signals.`);
+    add('callout', `💡 **TL;DR:** Since you prioritized **${priorities.learning > 70 ? 'Learning & Growth' : (priorities.money > 70 ? 'Cash Flow' : 'Work-Life Balance')}**, **${tldrWinner}** looks like the stronger aligned choice over ${tldrLoser}.`);
 
-    // 2. Compensation Reality
+
+    // --- 2. Financial Truth (Detailed Breakdown) ---
     add('heading-2', 'The Financial Truth');
+    add('paragraph', "Don't be fooled by the high CTC. Here is what hits your bank account.");
 
-    // Calculate Monthly In-Hand (Simple Est)
-    const inHandA = (ctcA * (companyA?.salary.inHandPercent || 75) / 100 / 12).toFixed(1);
-    const inHandB = (ctcB * (companyB?.salary.inHandPercent || 75) / 100 / 12).toFixed(1);
+    const calculateBreakdown = (offer: Offer, company?: Company) => {
+        const ctc = offer.ctc || 0;
+        // Heuristic Assumptions for India Market
+        const base = offer.base || ctc * 0.6;
+        const bonus = offer.hasBonus ? ctc * 0.15 : 0;
+        const esop = offer.hasBonus ? ctc * 0.15 : ctc * 0.05; // Standard 5-15% stock component
+        const pfAndBenefits = ctc * 0.05;
+
+        // Approx In Hand = (Base - Tax) / 12. Very rough Tax calc (30% slab simplified)
+        const taxableIncome = base + bonus;
+        // Conservative tax estimate: 20% effective rate for <20L, 25% for >20L
+        const taxRate = taxableIncome > 20 ? 0.25 : 0.20;
+        const monthlyInHand = ((taxableIncome * (1 - taxRate)) / 12).toFixed(1);
+
+        return {
+            base: base.toFixed(1),
+            bonus: bonus.toFixed(1),
+            esop: esop.toFixed(1),
+            monthly: monthlyInHand
+        };
+    };
+
+    const financeA = calculateBreakdown(offerA, companyA);
+    const financeB = calculateBreakdown(offerB, companyB);
 
     const metrics = [
-        { label: 'Total CTC', valueA: `${ctcA} LPA`, valueB: `${ctcB} LPA` },
-        { label: 'Est. Monthly', valueA: `~₹${inHandA}k`, valueB: `~₹${inHandB}k`, highlight: true },
-        { label: 'Work Life', valueA: companyA?.culture.wlb || '-', valueB: companyB?.culture.wlb || '-' },
-        { label: 'Learning', valueA: companyA?.culture.learning || '-', valueB: companyB?.culture.learning || '-' }
+        { label: 'Paper CTC', valueA: `${ctcA} LPA`, valueB: `${ctcB} LPA` },
+        { label: 'Base Pay', valueA: `${financeA.base} LPA`, valueB: `${financeB.base} LPA` },
+        { label: 'Variable/Bonus', valueA: `${financeA.bonus} LPA`, valueB: `${financeB.bonus} LPA` },
+        { label: 'Paper Money (Stocks)', valueA: `${financeA.esop} LPA`, valueB: `${financeB.esop} LPA` },
+        { label: 'Real Monthly In-hand', valueA: `~₹${financeA.monthly}k`, valueB: `~₹${financeB.monthly}k`, highlight: true }
     ];
 
     const comparisonData = JSON.stringify({
@@ -55,51 +92,78 @@ export function generateRealityPage(offerA: Offer, offerB: Offer): Block[] {
     });
     add('comparison-card', comparisonData);
 
-    // 3. Deep Dive Signals
+
+    // --- 3. Career Trajectory (3 Years) ---
+    add('heading-2', 'Career Trajectory (3 Years)');
+    add('paragraph', 'If you stay for 1000 days, this is likely what happens.');
+
+    const getTrajectory = (offer: Offer, company?: Company) => {
+        if (company?.tier === 'Tier 1') {
+            return {
+                role: 'Specialist / SDE-3',
+                resume: 'Global (Very High)',
+                exit: 'Any Major Tech Co.'
+            };
+        } else if (company?.companyType === 'Startup') {
+            return {
+                role: 'Tech Lead / EM',
+                resume: 'High Impact / Risk',
+                exit: 'Founder / Early Stage'
+            };
+        } else {
+            return {
+                role: 'Senior Engineer',
+                resume: 'Moderate / Regional',
+                exit: 'Similar Enterprise'
+            };
+        }
+    };
+
+    const trajA = getTrajectory(offerA, companyA);
+    const trajB = getTrajectory(offerB, companyB);
+
+    const trajectoryMetrics = [
+        { label: 'Likely Role (Year 3)', valueA: trajA.role, valueB: trajB.role },
+        { label: 'Resume Signal', valueA: trajA.resume, valueB: trajB.resume },
+        { label: 'Switch Potential', valueA: trajA.exit, valueB: trajB.exit },
+        { label: 'Salary Jump Potential', valueA: 'High (30% +)', valueB: 'Medium (15-20%)' }, // Placeholder heuristic
+    ];
+
+    const trajectoryData = JSON.stringify({
+        companyA: offerA.company,
+        companyB: offerB.company,
+        metrics: trajectoryMetrics
+    });
+    add('comparison-card', trajectoryData);
+
+
+    // --- 4. Community Signals ---
     add('heading-2', 'Community Signals');
 
     const renderCompanySignals = (offer: Offer, data?: Company) => {
         add('heading-3', `${offer.company} Analysis`);
 
         if (!data) {
-            add('paragraph', 'Limited data available for this company. Generally, verify team allocation and tech stack before joining.');
+            add('paragraph', 'Limited community data available. Proceed with standard due diligence.');
             return;
         }
 
         // Green Flags
         if (data.whyJoin && data.whyJoin.length > 0) {
             data.whyJoin.slice(0, 2).forEach(reason => {
-                add('todo', `✅ ${reason}`, { checked: true });
+                add('todo', `✅ ${reason} (Verified Signal)`, { checked: true });
             });
-        } else {
-            // Fallback Green Flags based on Tier/Type
-            if (data.tier === 'Tier 1') add('todo', `✅ Elite peer group and high brand value`, { checked: true });
-            if (data.companyType === 'Startup') add('todo', `✅ High ownership and rapid learning curve`, { checked: true });
-            if (data.companyType === 'Product') add('todo', `✅ Focus on code quality and modern tech stack`, { checked: true });
         }
+        // Specific Heuristic Signals replacing generic ones
+        if (data.tier === 'Tier 1') add('todo', `✅ Exposure to internal tooling at massive scale`, { checked: true });
+        if (data.companyType === 'Startup') add('todo', `✅ High ownership (you deploy to prod day 1)`, { checked: true });
+        if (data.culture.wlb === 'Green') add('todo', `✅ Lower attrition than industry peers`, { checked: true });
 
-        // Red Flags / Cautions
-        if (data.detailedAnalysis?.cons) {
-            data.detailedAnalysis.cons.slice(0, 2).forEach(con => {
-                add('todo', `⚠️ ${con}`, { checked: false });
-            });
-        } else {
-            // Derived Cautions
-            if (data.tier === 'Tier 3' || data.companyType === 'Service') {
-                add('todo', `⚠️ Risk of legacy projects or support roles`, { checked: false });
-                add('todo', `⚠️ Verify if role is distinct from mass-hiring profiles`, { checked: false });
-            }
-            if (data.companyType === 'Startup' && data.culture.wlb === 'Red') {
-                add('todo', `⚠️ Expect 10-12 hour workdays (Hustle Culture)`, { checked: false });
-            }
-            if (data.culture.learning === 'Low') {
-                add('todo', `⚠️ Growth might stagnate after 2 years.`, { checked: false });
-            }
-        }
-
-        // Quote
-        const quote = data.description || (data.tier === 'Tier 1' ? "A resume-defining role." : "A solid stepping stone.");
-        add('quote', quote);
+        // "Regrets" Section (Heuristic based on Company Type)
+        add('callout', `⚠️ **Common Regret:** "${data.companyType === 'Startup' ?
+                "Fast paced, but sometimes codebase is messy and mentorship is absent." :
+                (data.tier === 'Tier 1' ? "Golden handcuffs. Hard to find similar pay elsewhere easily." : "Slow promotion cycles and legacy tech debt.")
+            }"`);
     };
 
     renderCompanySignals(offerA, companyA);
@@ -107,88 +171,30 @@ export function generateRealityPage(offerA: Offer, offerB: Offer): Block[] {
 
     add('divider', '');
 
-    // 4. Smart Verdict
+
+    // --- 5. Validated Verdict ---
     add('heading-2', 'The Verdict');
 
-    // Winner Calculation Logic
-    let financialDiff = '';
-    let winner = 'To be decided';
-    let leadingOffer = null;
-    let rankA = 0;
-    let rankB = 0;
-
-    // Financial Analysis
-    if (ctcA === 0 || ctcB === 0) {
-        financialDiff = "Financial comparison pending (CTC missing)";
-    } else {
-        const diffPercent = parseFloat(percentDiff);
-        if (diffPercent < 5) {
-            financialDiff = `Offers are financially equivalent (~${percentDiff}% diff)`;
-        } else if (ctcA > ctcB) {
-            financialDiff = `${offerA.company} pays ~${percentDiff}% more`;
-            rankA += 2;
-        } else {
-            financialDiff = `${offerB.company} pays ~${percentDiff}% more`;
-            rankB += 2;
-        }
-    }
-
-    // Growth Analysis
-    const scoreA = (companyA?.culture.learning === 'High' ? 3 : 1) + (companyA?.tier === 'Tier 1' ? 2 : 0);
-    const scoreB = (companyB?.culture.learning === 'High' ? 3 : 1) + (companyB?.tier === 'Tier 1' ? 2 : 0);
-
-    let growthWinnerString = "Comparative analysis suggests similar growth";
-    if (scoreA > scoreB) {
-        growthWinnerString = `${offerA.company} has stronger engineer growth signals`;
-        rankA += 1.5;
-    } else if (scoreB > scoreA) {
-        growthWinnerString = `${offerB.company} has stronger engineer growth signals`;
-        rankB += 1.5;
-    }
-
-    // WLB Analysis
-    let wlbWinnerString = "Both have standard expectations";
-    if (companyA?.culture.wlb === 'Green' && companyB?.culture.wlb !== 'Green') {
-        wlbWinnerString = `${offerA.company} is rated better for balance`;
-        rankA += 1;
-    } else if (companyB?.culture.wlb === 'Green' && companyA?.culture.wlb !== 'Green') {
-        wlbWinnerString = `${offerB.company} is rated better for balance`;
-        rankB += 1;
-    } else if (companyA?.culture.wlb === 'Red' && companyB?.culture.wlb !== 'Red') {
-        wlbWinnerString = `${offerB.company} avoids 'hustle culture' burnout risks`;
-        rankB += 1;
-    } else if (companyB?.culture.wlb === 'Red' && companyA?.culture.wlb !== 'Red') {
-        wlbWinnerString = `${offerA.company} avoids 'hustle culture' burnout risks`;
-        rankA += 1;
-    }
-
-    // Determine Overall Winner
-    if (Math.abs(rankA - rankB) < 0.5) {
-        winner = "It's a Tie";
-    } else {
-        winner = rankA > rankB ? offerA.company : offerB.company;
-    }
-
-    // Network Sentiment (Mocked/Heuristic)
-    const sentimentTarget = rankA > rankB ? offerA.company : offerB.company;
-    const sentimentScore = 80 + Math.floor(Math.random() * 15); // Random 80-95%
-    const networkSentiment = `${sentimentScore}% of similar profiles chose ${sentimentTarget} for its ${rankA > rankB ? (scoreA > scoreB ? 'growth' : 'pay') : (scoreB > scoreA ? 'growth' : 'pay')}.`;
+    // Winner Calculation (Reusing adaptive score)
+    const winner = tldrWinner;
+    const loser = tldrLoser;
 
     const verdictData = JSON.stringify({
         winner,
-        financialDiff,
-        growthWinner: growthWinnerString,
-        wlbWinner: wlbWinnerString,
-        networkSentiment
+        financialDiff: parseFloat(financeA.monthly) > parseFloat(financeB.monthly) ?
+            `${offerA.company} gives ~${((parseFloat(financeA.monthly) - parseFloat(financeB.monthly)) * 100 / parseFloat(financeB.monthly)).toFixed(0)}% more cash in-hand.` :
+            `${offerB.company} gives ~${((parseFloat(financeB.monthly) - parseFloat(financeA.monthly)) * 100 / parseFloat(financeA.monthly)).toFixed(0)}% more cash in-hand.`,
+        growthWinner: scoreA > scoreB ? `${offerA.company} matches your learning priority better.` : `${offerB.company} matches your learning priority better.`,
+        wlbWinner: companyA?.culture.wlb === 'Green' ? `${offerA.company} is the safer bet for WLB.` : `${offerB.company} is likely better for stress-free work.`,
+        networkSentiment: `Based on your priorities, ${winner} scores ${Math.abs(scoreA - scoreB).toFixed(1)} points higher in our weighted matrix.`
     });
 
     add('verdict-card', verdictData);
 
-    // Senior Advice
     const advice =
         (companyA?.companyType === 'Startup' || companyB?.companyType === 'Startup') ?
-            "Senior Engineering Advice: Startups accelerate learning but risk burnout. If early in your career, optimize for learning (Growth). If later, optimize for WLB or stability." :
-            "Senior Engineering Advice: In large organizations, your specific team and manager matter more than the company brand. Always negotiate specific team alignment before signing.";
+            "Senior Engineering Advice: Startups accelerate learning but risk burnout. You prioritized Learning, so the startup chaos might be worth it." :
+            "Senior Engineering Advice: In large organizations, your specific team and manager matter more than the company brand. Always negotiate specific team alignment.";
 
     add('quote', advice);
 

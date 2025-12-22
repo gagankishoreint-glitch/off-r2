@@ -99,6 +99,31 @@ export function ContentBlock({ block, documentId, readOnly = false }: ContentBlo
         )
     }
 
+    if (block.type === 'callout') {
+        return (
+            <div className="my-4 p-4 bg-muted/50 border-l-4 border-primary rounded-r-lg text-sm text-foreground">
+                <p
+                    ref={contentRef as any}
+                    className="outline-none break-words"
+                    contentEditable={!readOnly}
+                    suppressContentEditableWarning
+                    onKeyDown={!readOnly ? handleKeyDown : undefined}
+                    onInput={!readOnly ? handleChange : undefined}
+                >
+                    {readOnly ? (
+                        <span dangerouslySetInnerHTML={{
+                            __html: block.content
+                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                .replace(/__(.*?)__/g, '<em>$1</em>')
+                        }} />
+                    ) : (
+                        block.content
+                    )}
+                </p>
+            </div>
+        )
+    }
+
     if (block.type === 'comparison-card') {
         try {
             const data = JSON.parse(block.content);

@@ -1,17 +1,4 @@
-export type BlockType =
-    | 'paragraph'
-    | 'heading-1'
-    | 'heading-2'
-    | 'heading-3'
-    | 'bullet-list'
-    | 'numbered-list'
-    | 'todo'
-    | 'quote'
-    | 'code'
-    | 'image'
-    | 'divider'
-    | 'comparison-card'
-    | 'verdict-card';
+export type BlockType = 'paragraph' | 'heading-1' | 'heading-2' | 'heading-3' | 'bullet-list' | 'numbered-list' | 'todo' | 'image' | 'code' | 'quote' | 'divider' | 'comparison-card' | 'verdict-card' | 'callout';
 
 export interface Block {
     id: string;

@@ -204,14 +204,20 @@ const CS_TIER1: Company[] = [
         majors: ['CS'],
         domains: ['Payments', 'Backend', 'Fintech'],
         roleTypes: ['SWE', 'Backend', 'Security'],
-        location: 'Hybrid',
+        location: 'On-site',
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 18, maxLPA: 40, inHandPercent: 74 },
+        salary: { minLPA: 45, maxLPA: 60, inHandPercent: 60 },
         culture: { wlb: 'Green', learning: 'High' },
-        description: 'Payments infra and APIs.',
-        whyJoin: ['Payments infrastructure leader', 'Remote-friendly', 'High engineering bar'],
+        description: 'Financial infrastructure platform (Bangalore Office).',
+        whyJoin: ['Top Tier Pay (₹50L+ Fresh)', 'Global Engineering Standards', 'High Talent Density'],
+        detailedAnalysis: {
+            pros: ["**Global Pay**: One of the highest payers in Bangalore.", "**Culture**: Writing-heavy, thoughtful engineering culture.", "**Office**: Beautiful office in RMZ Ecoworld."],
+            cons: ["**Stock Heavy**: ~50% of CTC is RSU (Paper money until clear liquidity events).", "**Performance**: High bar, can be stressful to maintain."],
+            recentDevelopments: ["Growing Bangalore team significantly."],
+        },
+        careersUrl: 'https://stripe.com/jobs/search?l=bengaluru-india'
     },
     {
         id: 'jane-street',
@@ -220,14 +226,20 @@ const CS_TIER1: Company[] = [
         majors: ['CS'],
         domains: ['Quant', 'Trading', 'Systems'],
         roleTypes: ['Quant-Dev', 'SWE'],
-        location: 'Hybrid',
+        location: 'On-site', // Relocation likely
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 50, maxLPA: 150, inHandPercent: 80 },
+        salary: { minLPA: 100, maxLPA: 200, inHandPercent: 80 }, // Converted
         culture: { wlb: 'Yellow', learning: 'High' },
-        description: 'Quant trading and research — highly selective.',
-        whyJoin: ['Highest paying globally', 'OCaml expertise', 'Ultra elite'],
+        description: 'Quant trading giant. Main offices: HK, London, NY. (No India Eng Office).',
+        whyJoin: ['Highest Pay Globally', 'OCaml Mastery', 'Relocation to Global Hubs'],
+        detailedAnalysis: {
+            pros: ["**Math Heaven**: Best place for functional programming.", "**Compensation**: Unmatched globally."],
+            cons: ["**No India Office**: Requires relocation to HK/London/NY.", "**Niche**: OCaml is rare outside JS."],
+            recentDevelopments: ["Continuing to hire top IIT rankers for global roles."]
+        },
+        careersUrl: 'https://www.janestreet.com/join-jane-street/open-roles/'
     },
     {
         id: 'citadel',
@@ -236,14 +248,20 @@ const CS_TIER1: Company[] = [
         majors: ['CS'],
         domains: ['Quant', 'Trading', 'Systems'],
         roleTypes: ['Quant-Eng', 'SWE', 'Data'],
-        location: 'Hybrid',
+        location: 'On-site',
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 40, maxLPA: 120, inHandPercent: 80 },
+        salary: { minLPA: 60, maxLPA: 120, inHandPercent: 50 }, // 50% Bonus
         culture: { wlb: 'Red', learning: 'High' },
-        description: 'Hedge fund with quant/engineering roles.',
-        whyJoin: ['Top quant firm', 'C++ mastery required', 'Brutal interviews'],
+        description: 'Market maker with office in Gurugram.',
+        whyJoin: ['Top 0.1% Pay (₹1Cr+)', 'High Performance Culture', 'Gurugram Office'],
+        detailedAnalysis: {
+            pros: ["**Compensation**: ₹60L Base + 100% Bonus potential.", "**Speed**: Fast feedback loops."],
+            cons: ["**WLB**: Intense trading hours.", "**Churn**: High turnover if not performing."],
+            recentDevelopments: ["Expanding Gurugram engineering team."]
+        },
+        careersUrl: 'https://www.citadelsecurities.com/careers/open-opportunities/engineering/?location=Gurugram'
     },
     {
         id: 'openai',
@@ -252,14 +270,15 @@ const CS_TIER1: Company[] = [
         majors: ['CS'],
         domains: ['AI/ML', 'Research', 'Infrastructure'],
         roleTypes: ['ML Research', 'SWE', 'Infra'],
-        location: 'Hybrid',
+        location: 'Remote', // Or Relocation
         companyType: 'Startup',
         difficulty: 'Hard',
         internFriendly: false,
-        salary: { minLPA: 30, maxLPA: 80, inHandPercent: 78 },
+        salary: { minLPA: 50, maxLPA: 150, inHandPercent: 78 },
         culture: { wlb: 'Red', learning: 'High' },
-        description: 'State-of-the-art ML research and products.',
-        whyJoin: ['AI frontier', 'ChatGPT creators', 'Most competitive globally'],
+        description: 'AI Research Lab (SF/London). No India Engineering Office yet.',
+        whyJoin: ['Building AGI', 'History Defining Work', 'Relocation Opportunity'],
+        careersUrl: 'https://openai.com/careers/search'
     },
     {
         id: 'nvidia-sw',
@@ -276,6 +295,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'GPU software, ML libraries and developer tools.',
         whyJoin: ['AI hardware leader', 'CUDA expertise valuable', 'Great for ML engineers'],
+        careersUrl: 'https://www.nvidia.com/en-in/about-nvidia/careers/'
     },
     {
         id: 'salesforce',
@@ -292,6 +312,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'CRM and enterprise SaaS platform.',
         whyJoin: ['Great WLB', 'Ohana culture', 'Stable and growing'],
+        careersUrl: 'https://www.salesforce.com/company/careers/locations/india/'
     },
     {
         id: 'bloomberg',
@@ -308,6 +329,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Financial data terminals & analytics.',
         whyJoin: ['Finance + tech blend', 'Great WLB', 'Strong engineering culture'],
+        careersUrl: 'https://www.bloomberg.com/company/careers/global-roles/working-at-bloomberg-in-mumbai-pune/'
     },
     {
         id: 'linkedin',
@@ -324,6 +346,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Professional networking platform.',
         whyJoin: ['Great WLB', 'Top-tier pay', 'Massive data scale'],
+        careersUrl: 'https://careers.linkedin.com/'
     },
     {
         id: 'x-twitter',
@@ -345,6 +368,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Red', learning: 'High' },
         description: 'The "Everything App". High intensity engineering.',
         whyJoin: ['Rebuilding everything', 'High equity upside', 'Hardcore engineering'],
+        careersUrl: 'https://twitter.wd5.myworkdayjobs.com/X'
     },
     {
         id: 'kognitos',
@@ -366,6 +390,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Generative AI for business automation.',
         whyJoin: ['Top paying startup in India', 'Cutting edge GenAI', 'Early stage equity'],
+        careersUrl: 'https://www.kognitos.com/careers/'
     },
     {
         id: 'airbnb',
@@ -388,6 +413,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Global travel community marketplace.',
         whyJoin: ['Strong design culture', 'Great benefits', 'Global impact'],
+        careersUrl: 'https://careers.airbnb.com/'
     },
     {
         id: 'goldman-sachs',
@@ -410,6 +436,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Global investment banking and securities.',
         whyJoin: ['Prestigious brand', 'High bonuses', 'Strong alumni network'],
+        careersUrl: 'https://www.goldmansachs.com/worldwide/india/careers'
     },
     {
         id: 'prophecy',
@@ -426,6 +453,7 @@ const CS_TIER1: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Low-code data engineering platform.',
         whyJoin: ['High startup pay', 'Modern tech stack', 'Rapid growth'],
+        careersUrl: 'https://www.prophecy.ai/careers'
     }
 ];
 
@@ -450,6 +478,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Cloud infrastructure and database giant.',
         whyJoin: ['Stability', 'OCI is growing', 'Good WLB'],
+        careersUrl: 'https://www.oracle.com/in/careers/'
     },
     {
         id: 'hackerrank',
@@ -472,6 +501,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Tech hiring platform for developers.',
         whyJoin: ['Top tech hiring platform', 'Strong engineering culture', 'Remote-friendly'],
+        careersUrl: 'https://www.hackerrank.com/careers/'
     },
     {
         id: 'glance',
@@ -488,6 +518,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Lock-screen content platform.',
         whyJoin: ['Unicorn startup', 'InMobi pedigree', 'Consumer-scale tech'],
+        careersUrl: 'https://glance.com/careers'
     },
     {
         id: 'trellix',
@@ -504,6 +535,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Cybersecurity and threat intelligence.',
         whyJoin: ['Cybersecurity leader', 'Good WLB', 'Learn security at scale'],
+        careersUrl: 'https://careers.trellix.com/'
     },
     {
         id: 'adobe',
@@ -520,7 +552,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Creative & document management software.',
         whyJoin: ['Creative Cloud Leader', 'Great WLB', 'Research Focus'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://careers.adobe.com/'
     },
     {
         id: 'atlassian',
@@ -537,7 +570,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Jira, Confluence — team collaboration tools.',
         whyJoin: ['Remote-First Forever', 'Great WLB', 'Top Compensation'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.atlassian.com/company/careers'
     },
     {
         id: 'uber',
@@ -554,6 +588,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Mobility, backend systems and market platforms.',
         whyJoin: ['High Scale Engineering', 'Top Tier Pay', 'Fast Paced'],
+        careersUrl: 'https://www.uber.com/in/en/careers/',
         levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Staff'],
         internship: {
             role: "Software Engineer Intern",
@@ -576,7 +611,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Document DB and developer platform.',
         whyJoin: ['Database Leader', 'Remote Friendly', 'Strong Engineering'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Staff']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Staff'],
+        careersUrl: 'https://www.mongodb.com/company/careers'
     },
     {
         id: 'zoho',
@@ -593,7 +629,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Indian enterprise SaaS with wide product suite.',
         whyJoin: ['Profitable Bootstrap', 'Rural Offices', 'Great Food'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.zoho.com/careers/'
     },
     {
         id: 'postman',
@@ -610,7 +647,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'API development and collaboration platform.',
         whyJoin: ['API Platform Leader', 'Remote First', 'Global Impact'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Staff']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Staff'],
+        careersUrl: 'https://www.postman.com/company/careers/'
     },
     {
         id: 'browserstack',
@@ -627,7 +665,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Cross-browser testing & dev tools.',
         whyJoin: ['SaaS Unicorn', 'Profitable', 'Scale Engineering'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.browserstack.com/careers'
     },
     {
         id: 'freshworks',
@@ -644,7 +683,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Customer engagement & CRM SaaS from India.',
         whyJoin: ['SaaS Pioneer', 'Great Culture', 'Public Company'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.freshworks.com/company/careers/'
     },
     {
         id: 'shopify',
@@ -661,7 +701,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'E-commerce platform for online stores.',
         whyJoin: ['Remote-First', 'Strong Engineering Culture', 'High Growth'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.shopify.com/careers'
     },
     {
         id: 'dropbox',
@@ -678,7 +719,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Cloud storage and file collaboration platform.',
         whyJoin: ['Distributed Systems', 'Great WLB', 'Strong Engineering'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.dropbox.com/jobs'
     },
     {
         id: 'snowflake',
@@ -695,7 +737,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Cloud data warehouse and analytics platform.',
         whyJoin: ['Data Infrastructure Leader', 'High Compensation', 'Cutting Edge'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.snowflake.com/en/company/careers/'
     },
     {
         id: 'databricks',
@@ -712,7 +755,8 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Unified analytics platform built on Apache Spark.',
         whyJoin: ['Data + AI Leader', 'High Growth', 'Apache Spark Creators'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.databricks.com/company/careers/open-positions'
     },
 ];
 
@@ -730,9 +774,14 @@ const CS_TIER3: Company[] = [
         internFriendly: true,
         salary: { minLPA: 8, maxLPA: 20, inHandPercent: 70 },
         culture: { wlb: 'Yellow', learning: 'Medium' },
-        description: 'Indian payments and financial services platform.',
-        whyJoin: ['High Scale Fintech', 'Fast Paced', 'Impact at Scale'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        description: 'Indian payments giant. Hiring scale has slowed post-2024.',
+        whyJoin: ['High Scale Fintech', 'Building for 500M Indians', 'Impact at Scale'],
+        detailedAnalysis: {
+            pros: ["**Scale**: Handling billions of transactions.", "**Learning**: Great place to learn distributed systems at scale."],
+            cons: ["**Regulatory Risks**: Recent RBI actions have caused uncertainty.", "**Culture**: Can be aggressive/sales-driven in some units."],
+            recentDevelopments: ["Focusing on AI-led efficiency and core payments."]
+        },
+        careersUrl: 'https://paytm.com/careers'
     },
     {
         id: 'phonepe',
@@ -751,11 +800,16 @@ const CS_TIER3: Company[] = [
         companyType: 'Startup',
         difficulty: 'Easy',
         internFriendly: true,
-        salary: { minLPA: 10, maxLPA: 25, inHandPercent: 72 },
-        culture: { wlb: 'Yellow', learning: 'Medium' },
-        description: 'UPI and payments platform in India.',
-        whyJoin: ['UPI Leader', 'Top Compensation', 'ESOP Buybacks'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        salary: { minLPA: 22, maxLPA: 45, inHandPercent: 60 }, // significant stock component
+        culture: { wlb: 'Yellow', learning: 'High' },
+        description: 'UPI Leader. "Make Wealth" factory via ESOPs.',
+        whyJoin: ['Consistent ESOP Buybacks', 'Tier-1 Peer Group', 'High Scale Systems'],
+        detailedAnalysis: {
+            pros: ["**Liquidity**: Annual buybacks make paper money real.", "**Scale**: 48% UPI market share."],
+            cons: ["**Execution Heavy**: Constant feature shipping.", "**Office**: Strict 5-day office culture."],
+            recentDevelopments: ["Focusing on profitability and new fintech verticals."]
+        },
+        careersUrl: 'https://www.phonepe.com/careers/'
     },
     {
         id: 'razorpay',
@@ -769,10 +823,15 @@ const CS_TIER3: Company[] = [
         difficulty: 'Medium',
         internFriendly: true,
         salary: { minLPA: 12, maxLPA: 28, inHandPercent: 72 },
-        culture: { wlb: 'Yellow', learning: 'High' },
-        description: 'Payments infra for Indian merchants.',
+        culture: { wlb: 'Red', learning: 'High' }, // Shifted to Red/Yellow
+        description: 'Payments infra. Culture shifted to high-performance/stress recently.',
         whyJoin: ['YCombinator Alumni', 'Fintech Innovation', 'Great Engineering'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        detailedAnalysis: {
+            pros: ["**Problem Statement**: Complex payment routing problems.", "**Brand**: Strong engineering brand in India."],
+            cons: ["**Stress**: Recent reviews cite heavily increased pressure.", "**PIP Culture**: Performance bars have become rigid."],
+            recentDevelopments: ["Management focus on efficiency and speed."]
+        },
+        careersUrl: 'https://razorpay.com/jobs/'
     },
     {
         id: 'groww',
@@ -789,7 +848,8 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Investment platform with product & data teams.',
         whyJoin: ['Fast Growing Fintech', 'Modern Tech Stack', 'Ownership'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://groww.in/careers'
     },
     {
         id: 'zerodha',
@@ -798,15 +858,20 @@ const CS_TIER3: Company[] = [
         majors: ['CS'],
         domains: ['Fintech', 'Trading', 'Backend'],
         roleTypes: ['SWE', 'Backend', 'Trading-Infra'],
-        location: 'On-site',
+        location: 'On-site', // Bangalore
         companyType: 'Product',
         difficulty: 'Medium',
         internFriendly: true,
-        salary: { minLPA: 10, maxLPA: 25, inHandPercent: 74 },
+        salary: { minLPA: 12, maxLPA: 30, inHandPercent: 88 },
         culture: { wlb: 'Green', learning: 'High' },
-        description: 'Retail brokerage & trading platform.',
-        whyJoin: ['Bootstrapped Unicorn', 'Tech First', 'No Marketing Clutter'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        description: 'Bootstrapped brokerage. "WLB Gold Standard".',
+        whyJoin: ['6 PM Sunset Rule (No Wknds)', 'Profitable & Stable', 'Tech Lean Team (<50 SDEs)'],
+        detailedAnalysis: {
+            pros: ["**Sanity**: Strict no-weekend work policy.", "**Density**: High talent density due to small team."],
+            cons: ["**Hiring**: Extremely slow and selective.", "**Pace**: Might feel slow for adrenaline junkies."],
+            recentDevelopments: ["Maintaining lean team despite market fluctuations."]
+        },
+        careersUrl: 'https://careers.zerodha.com/'
     },
     {
         id: 'cred',
@@ -815,15 +880,20 @@ const CS_TIER3: Company[] = [
         majors: ['CS'],
         domains: ['Fintech', 'Payments', 'Product'],
         roleTypes: ['SWE', 'Backend', 'Product'],
-        location: 'On-site',
+        location: 'On-site', // Bangalore
         companyType: 'Startup',
         difficulty: 'Medium',
         internFriendly: true,
-        salary: { minLPA: 15, maxLPA: 35, inHandPercent: 72 },
+        salary: { minLPA: 35, maxLPA: 60, inHandPercent: 80 },
         culture: { wlb: 'Yellow', learning: 'High' },
-        description: 'Premium fintech brand focused on credit.',
-        whyJoin: ['Design First', 'Top 1% Talent', 'High ESOPs'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        description: 'Elite fintech club. "Design Mafia".',
+        whyJoin: ['Top 1% Compensation', 'Aesthetic Obsession', 'High Status Peer Group'],
+        detailedAnalysis: {
+            pros: ["**Status**: High resume value.", "**Perks**: Premium Macbooks, office, and events."],
+            cons: ["**Elitist**: Can feel exclusionary.", "**Grind**: High pressure for perfection."],
+            recentDevelopments: ["Focusing on profitability and new fintech verticals."]
+        },
+        careersUrl: 'https://careers.cred.club/'
     },
     {
         id: 'meesho',
@@ -832,15 +902,20 @@ const CS_TIER3: Company[] = [
         majors: ['CS'],
         domains: ['Ecommerce', 'Backend', 'Growth'],
         roleTypes: ['SWE', 'Backend', 'Growth'],
-        location: 'On-site',
+        location: 'Hybrid', // Flexi-Office (1 day/week)
         companyType: 'Startup',
         difficulty: 'Easy',
         internFriendly: true,
-        salary: { minLPA: 10, maxLPA: 25, inHandPercent: 70 },
-        culture: { wlb: 'Red', learning: 'Medium' },
-        description: 'Social commerce and marketplace.',
-        whyJoin: ['E-commerce Scale', 'Fast Growth', 'High Impact'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        salary: { minLPA: 25, maxLPA: 50, inHandPercent: 70 },
+        culture: { wlb: 'Green', learning: 'High' },
+        description: 'MPL (Meesho Price Low) & Social Commerce. "Horizontal Culture".',
+        whyJoin: ['Flat Hierarchy (No Sir/Ma\'am)', 'High Ownership', 'Scale Profiling'],
+        detailedAnalysis: {
+            pros: ["**Culture**: Very open and flat.", "**Growth**: Rapid sprint cycles."],
+            cons: ["**RTO**: Ended 'Work From Anywhere'. Now Flexi-Office.", "**Frugality**: Increased focus on cost-cutting."],
+            recentDevelopments: ["Shifted to 'Flexi-Office' model requiring Bangalore presence."]
+        },
+        careersUrl: 'https://meesho.jobs/'
     },
     {
         id: 'tcs-digital',
@@ -857,7 +932,8 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Low' },
         description: 'IT services with higher-tier digital practice.',
         whyJoin: ['Digital Projects', 'Upskilling', 'Job Security'],
-        levels: ['Entry Level', 'Mid Level', 'Senior']
+        levels: ['Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.tcs.com/careers/india'
     },
 ];
 
@@ -877,11 +953,16 @@ const ECE_TIER1: Company[] = [
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 15, maxLPA: 35, inHandPercent: 78 },
-        culture: { wlb: 'Green', learning: 'High' },
-        description: 'Global leader in wireless tech and mobile SoCs.',
-        whyJoin: ['Wireless Leader', 'Top Pay in ECE', '5G Innovation'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        salary: { minLPA: 16, maxLPA: 25, inHandPercent: 78 },
+        culture: { wlb: 'Yellow', learning: 'High' },
+        description: 'Wireless leader. India hub >10k engineers.',
+        whyJoin: ['SoC Design / 5G R&D', 'Strong Stocks (RSU)', 'Global Mobility'],
+        detailedAnalysis: {
+            pros: ["**Domain**: Best place for Wireless/Modem tech.", "**Stability**: Market leader status."],
+            cons: ["**Role Risk**: Freshers often allotted Design Verification (DV) over Design.", "**WLB**: Intense during tape-outs."],
+            recentDevelopments: ["Focusing on 6G and automotive chips."]
+        },
+        careersUrl: 'https://qualcomm.wd1.myworkdayjobs.com/External'
     },
     {
         id: 'texas-instruments',
@@ -894,11 +975,17 @@ const ECE_TIER1: Company[] = [
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 12, maxLPA: 28, inHandPercent: 76 },
+        salary: { minLPA: 20, maxLPA: 30, inHandPercent: 76 },
         culture: { wlb: 'Green', learning: 'High' },
-        description: 'Analog chip design for power and industrial.',
-        whyJoin: ['Analog Leader', 'Great Culture', 'Long Term Career'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        description: 'Analog King. India is a primary design hub.',
+        whyJoin: ['Analog Leader', 'Great WLB', 'Long Term Career'],
+        detailedAnalysis: {
+            pros: ["**Domain**: #1 in Analog chips.", "**Culture**: Very stable, low burn-out culture."],
+            cons: ["**Growth**: Can be slower/linear compared to AI hardware hype.", "**Tech**: Less 'flashy' than digital."],
+            recentDevelopments: ["Expanding into automotive PMICs."]
+        },
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://careers.ti.com/india/'
     },
     {
         id: 'nvidia-hw',
@@ -911,11 +998,16 @@ const ECE_TIER1: Company[] = [
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 20, maxLPA: 45, inHandPercent: 76 },
-        culture: { wlb: 'Green', learning: 'High' },
-        description: 'GPU computing leader with strong India team.',
-        whyJoin: ['AI Hardware King', 'High Stocks', 'Cutting Edge Tech'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Architect']
+        salary: { minLPA: 25, maxLPA: 35, inHandPercent: 76 },
+        culture: { wlb: 'Yellow', learning: 'High' },
+        description: 'GPU Computing Leader. India centers do Core Arch work.',
+        whyJoin: ['AI Hardware King', 'Highest ECE Salaries', 'Core Architecture Roles'],
+        detailedAnalysis: {
+            pros: ["**Innovation**: Working on chips powering ChatGPT.", "**Stock**: Meteoric stick growth benefits employees."],
+            cons: ["**Pressure**: High performance bar.", "**Entry**: Extremely competitive for freshers."],
+            recentDevelopments: ["Massive hiring for Blackwell/Hopper architecture teams."]
+        },
+        careersUrl: 'https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite'
     },
     {
         id: 'intel',
@@ -932,7 +1024,8 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'x86 chip pioneer with large India R&D.',
         whyJoin: ['CPU Pioneer', 'Great Benefits', 'Large Scale R&D'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.intel.com/content/www/us/en/jobs/locations/india.html'
     },
     {
         id: 'amd',
@@ -949,7 +1042,8 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'CPU/GPU competitor to Intel/NVIDIA.',
         whyJoin: ['High Growth', 'CPU + GPU', 'Strong Engineering'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.amd.com/en/corporate/careers.html'
     },
     {
         id: 'arm',
@@ -966,7 +1060,8 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'CPU architecture leader for mobile processors.',
         whyJoin: ['Mobile Architecture', 'Global Impact', 'Research Focus'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://careers.arm.com/locations/india'
     },
     {
         id: 'broadcom',
@@ -983,7 +1078,8 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Networking chips and semiconductor solutions.',
         whyJoin: ['Connectivity Leader', 'High Pay', 'Acquisition Growth'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.broadcom.com/company/careers'
     },
 ];
 
@@ -1003,7 +1099,8 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'EDA tools leader for IC design.',
         whyJoin: ['EDA Market Leader', 'Deep Tech', 'Stable Career'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.synopsys.com/careers/global/south-asia/india.html'
     },
     {
         id: 'cadence',
@@ -1020,7 +1117,8 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'EDA tools giant for analog/digital.',
         whyJoin: ['Design Automation', 'Innovation', 'Great Benefits'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.cadence.com/en_US/home/company/careers/india.html'
     },
     {
         id: 'micron',
@@ -1037,7 +1135,8 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Memory chip maker — DRAM/SSD expertise.',
         whyJoin: ['Memory Innovation', 'Manufacturing Scale', 'Global Presence'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://in.micron.com/about/careers'
     },
     {
         id: 'nxp',
@@ -1054,7 +1153,8 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Automotive chips and NFC/security.',
         whyJoin: ['Automotive Tech', 'Secure IoT', 'European Culture'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.nxp.com/company/about-nxp/careers:CAREERS'
     },
     {
         id: 'bosch-ece',
@@ -1071,7 +1171,8 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Automotive electronics and sensors.',
         whyJoin: ['Automotive Leader', 'German Engineering', 'Stability'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.bosch.in/careers/'
     },
 ];
 
@@ -1091,7 +1192,8 @@ const ECE_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'Design & tech services for automotive.',
         whyJoin: ['Design Services', 'Automotive Focus', 'Tata Group'],
-        levels: ['Entry Level', 'Mid Level', 'Senior']
+        levels: ['Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.tataelxsi.com/careers'
     },
     {
         id: 'ltts',
@@ -1108,7 +1210,8 @@ const ECE_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'Engineering services across domains.',
         whyJoin: ['Multi-domain Exposure', 'Global Projects', 'L&T Brand'],
-        levels: ['Entry Level', 'Mid Level', 'Senior']
+        levels: ['Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.ltts.com/careers'
     },
     {
         id: 'bel',
@@ -1125,7 +1228,8 @@ const ECE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Defense PSU for electronics.',
         whyJoin: ['National Service', 'Job Security', 'Defense Tech'],
-        levels: ['Probationary Officer', 'Senior Engineer']
+        levels: ['Probationary Officer', 'Senior Engineer'],
+        careersUrl: 'https://bel-india.in/careers/'
     },
 ];
 
@@ -1149,7 +1253,8 @@ const EEE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Global power and automation leader.',
         whyJoin: ['Energy Innovation', 'Global MNC', 'Great Training'],
-        levels: ['GET', 'Engineer', 'Senior Engineer']
+        levels: ['GET', 'Engineer', 'Senior Engineer'],
+        careersUrl: 'https://www.siemens-energy.com/global/en/company/jobs.html'
     },
     {
         id: 'abb',
@@ -1166,7 +1271,8 @@ const EEE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Swiss power & automation multinational.',
         whyJoin: ['Robotics Leader', 'Sustainable Tech', 'European Culture'],
-        levels: ['GET', 'Engineer', 'Senior Engineer']
+        levels: ['GET', 'Engineer', 'Senior Engineer'],
+        careersUrl: 'https://new.abb.com/careers/'
     },
     {
         id: 'schneider',
@@ -1183,7 +1289,8 @@ const EEE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'French energy management multinational.',
         whyJoin: ['Sustainability', 'Smart Grid focus', 'Great Culture'],
-        levels: ['GET', 'Engineer', 'Senior Engineer']
+        levels: ['GET', 'Engineer', 'Senior Engineer'],
+        careersUrl: 'https://www.se.com/in/en/about-us/careers/overview.jsp'
     },
 ];
 
@@ -1203,7 +1310,8 @@ const EEE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Power utility with renewable focus.',
         whyJoin: ['Renewable Energy', 'Tata Ethics', 'Green Transition'],
-        levels: ['GET', 'Assistant Manager', 'Senior Manager']
+        levels: ['GET', 'Assistant Manager', 'Senior Manager'],
+        careersUrl: 'https://www.tatapower.com/careers/'
     },
     {
         id: 'lt-electrical',
@@ -1220,7 +1328,8 @@ const EEE_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'Indian conglomerate with electrical division.',
         whyJoin: ['Core Engineering', 'Construction Giant', 'Nation Building'],
-        levels: ['GET', 'Senior Engineer', 'Assistant Manager']
+        levels: ['GET', 'Senior Engineer', 'Assistant Manager'],
+        careersUrl: 'https://www.larsentoubro.com/corporate/careers/'
     },
 ];
 
@@ -1240,7 +1349,8 @@ const EEE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Largest power producer PSU.',
         whyJoin: ['Maharatna Status', 'Best in Class Pay', 'Campus Townships'],
-        levels: ['E2', 'E3', 'E4']
+        levels: ['E2', 'E3', 'E4'],
+        careersUrl: 'https://careers.ntpc.co.in/'
     },
     {
         id: 'powergrid',
@@ -1257,7 +1367,8 @@ const EEE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Transmission grid operator PSU.',
         whyJoin: ['Grid Management', 'Stable Career', 'Government Perks'],
-        levels: ['Engineer']
+        levels: ['Engineer'],
+        careersUrl: 'https://www.powergrid.in/job-opportunities'
     },
     {
         id: 'bhel',
@@ -1274,7 +1385,8 @@ const EEE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Low' },
         description: 'Maharatna PSU for power equipment.',
         whyJoin: ['Heavy Industries', 'Manufacturing Scale', 'Work Life Balance'],
-        levels: ['Engineer']
+        levels: ['Engineer'],
+        careersUrl: 'https://careers.bhel.in/bhel/jsp/index.jsp'
     },
 ];
 
@@ -1294,11 +1406,17 @@ const CORE_TIER1: Company[] = [
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 15, maxLPA: 35, inHandPercent: 74 },
-        culture: { wlb: 'Green', learning: 'High' },
-        description: 'Aerospace giant with India R&D.',
-        whyJoin: ['Aviation Leader', 'Complex Problems', 'Global Mobility'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        salary: { minLPA: 10, maxLPA: 16, inHandPercent: 74 },
+        culture: { wlb: 'Green', learning: 'Medium' },
+        description: 'Aerospace giant. Mix of IT/Analytics & Core Engineering.',
+        whyJoin: ['Aviation Leader', 'Global Mobility', 'Job Stability'],
+        detailedAnalysis: {
+            pros: ["**Brand**: Strongest aerospace brand.", "**Stability**: Very safe job."],
+            cons: ["**Bureaucracy**: Highly regulated, slow pace.", "**Role**: Many roles are IT/Support rather than core Aerodynamics."],
+            recentDevelopments: ["Expanding BIETC Bangalore facility."]
+        },
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://jobs.boeing.com/location/india-jobs/'
     },
     {
         id: 'airbus',
@@ -1311,11 +1429,17 @@ const CORE_TIER1: Company[] = [
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        salary: { minLPA: 15, maxLPA: 35, inHandPercent: 74 },
-        culture: { wlb: 'Green', learning: 'High' },
-        description: 'European aerospace with Bangalore engineering.',
-        whyJoin: ['Fly-by-wire Tech', 'European Work Culture', 'Innovation'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Expert']
+        salary: { minLPA: 8, maxLPA: 12, inHandPercent: 74 },
+        culture: { wlb: 'Green', learning: 'Medium' },
+        description: 'European aerospace leader. Flight physics & structure design.',
+        whyJoin: ['European Culture', 'Flight Physics', 'Great Perks (Travel)'],
+        detailedAnalysis: {
+            pros: ["**Culture**: Best-in-class WLB and European work ethic.", "**Perks**: Great travel benefits and insurance."],
+            cons: ["**Salary**: Lower ceiling than Software/VLSI roles.", "**Pace**: Slow corporate agility."],
+            recentDevelopments: ["Growing digital capabilities in Bangalore."]
+        },
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Expert'],
+        careersUrl: 'https://www.airbus.com/en/working-at-airbus-in-india'
     },
     {
         id: 'isro',
@@ -1332,7 +1456,8 @@ const CORE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Indian space agency — Chandrayaan, Mangalyaan.',
         whyJoin: ['Space Exploration', 'National Pride', 'Scientific Research'],
-        levels: ['Scientist/Engineer-SC', 'SD', 'SE', 'SF', 'SG']
+        levels: ['Scientist/Engineer-SC', 'SD', 'SE', 'SF', 'SG'],
+        careersUrl: 'https://www.isro.gov.in/Careers.html'
     },
 ];
 
@@ -1352,7 +1477,8 @@ const CORE_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'JLR parent with EV push.',
         whyJoin: ['Bar Raiser Culture', 'Fast Promotion Velocity', 'Working on AWS Bedrock / Q'],
-        levels: ['GET']
+        levels: ['GET'],
+        careersUrl: 'https://www.tatamotors.com/careers/'
     },
     {
         id: 'mahindra',
@@ -1369,7 +1495,8 @@ const CORE_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'SUV and tractor manufacturer.',
         whyJoin: ['Core Automotive', 'Off-road tech', 'Rise Philosophy'],
-        levels: ['GET', 'Senior Manager']
+        levels: ['GET', 'Senior Manager'],
+        careersUrl: 'https://www.mahindra.com/careers'
     },
     {
         id: 'bosch-auto',
@@ -1386,7 +1513,8 @@ const CORE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'German automotive components leader.',
         whyJoin: ['Bosch Way', 'Precision Engineering', 'Automotive Future'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
+        careersUrl: 'https://www.bosch.in/careers/'
     },
 ];
 
@@ -1406,7 +1534,8 @@ const CORE_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'EPC giant with infrastructure projects.',
         whyJoin: ['Mega Projects', 'Construction Leader', 'Field Exposure'],
-        levels: ['GET', 'Construction Manager']
+        levels: ['GET', 'Construction Manager'],
+        careersUrl: 'https://www.larsentoubro.com/corporate/careers/'
     },
     {
         id: 'tata-steel',
@@ -1423,7 +1552,8 @@ const CORE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Steel pioneer with Jamshedpur base.',
         whyJoin: ['Steel Manufacturing', 'Legacy', 'Employee Care'],
-        levels: ['GET', 'Senior Manager']
+        levels: ['GET', 'Senior Manager'],
+        careersUrl: 'https://www.tatasteel.com/careers/'
     },
     {
         id: 'ongc',
@@ -1440,7 +1570,8 @@ const CORE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Oil & gas Maharatna PSU.',
         whyJoin: ['Energy Sector', 'Highest PSU Pay', 'Field Life'],
-        levels: ['GT', 'E1', 'E2', 'E3', 'E4']
+        levels: ['GT', 'E1', 'E2', 'E3', 'E4'],
+        careersUrl: 'https://www.ongcindia.com/wps/wcm/connect/en/career/'
     },
     {
         id: 'hal',
@@ -1457,7 +1588,8 @@ const CORE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Defense PSU for aircraft manufacturing.',
         whyJoin: ['Fighter Jets', 'Aviation Tech', 'Defense Service'],
-        levels: ['Design Trainee', 'Engineer']
+        levels: ['Design Trainee', 'Engineer'],
+        careersUrl: 'https://hal-india.co.in/Career/M__171'
     },
 ];
 
