@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pdf from 'pdf-parse';
-import mammoth from 'mammoth';
+
+// // @ts-ignore
+// const pdf = require('pdf-parse');
+// // @ts-ignore
+// const mammoth = require('mammoth');
 
 export async function POST(req: NextRequest) {
+    return NextResponse.json({ error: 'Resume parsing temporarily disabled for maintenance.' }, { status: 503 });
+    /*
     try {
         const formData = await req.formData();
         const file = formData.get('file') as File;
@@ -38,4 +43,5 @@ export async function POST(req: NextRequest) {
         console.error('Error parsing file:', error);
         return NextResponse.json({ error: 'Failed to parse resume file.' }, { status: 500 });
     }
+    */
 }
