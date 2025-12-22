@@ -1,10 +1,11 @@
 "use client";
 
 import { useDocumentStore } from '@/store/use-document-store';
+import { useUserStore } from '@/store/use-user-store';
 import { useParams } from 'next/navigation';
 import { ContentBlock } from '@/components/editor/blocks/content-block';
 import Link from 'next/link';
-import { ArrowLeft, Radar } from 'lucide-react';
+import { ArrowLeft, Radar, Bookmark, BookmarkCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function ComparisonResultPage() {
@@ -133,23 +134,15 @@ export default function ComparisonResultPage() {
 
 // Read Later Button Component
 function ReadLaterButton({ docId }: { docId: string }) {
-    const { readLater, addToReadLater, removeFromReadLater } = useUserStore();
+    const { readLater, toggleReadLater } = useUserStore();
     const isSaved = readLater.includes(docId);
-
-    const handleToggle = () => {
-        if (isSaved) {
-            removeFromReadLater(docId);
-        } else {
-            addToReadLater(docId);
-        }
-    };
 
     return (
         <Button
             variant={isSaved ? "default" : "outline"}
             size="sm"
             className="gap-2"
-            onClick={handleToggle}
+            onClick={() => toggleReadLater(docId)}
         >
             {isSaved ? (
                 <>
