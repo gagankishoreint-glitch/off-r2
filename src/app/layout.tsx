@@ -17,8 +17,13 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "Off-Radar",
-    description: "The Truth Algorithm for Job Offers.",
+    title: "Off-Radar | The Real Truth About Tech Salaries & Job Offers",
+    description: "Decode your job offer with Off-Radar. Compare real in-hand salaries, verify company culture signals, and calculate true ROI. Built for India's engineering talent to make informed career decisions.",
+    keywords: ["CTC Calculator", "Tech Salaries India", "Job Offer Comparison", "In-hand Salary", "Startup vs MNC", "Engineering Careers", "Off-Radar"],
+    icons: {
+        icon: '/icon.png',
+        apple: '/apple-icon.png',
+    },
 };
 
 export default function RootLayout({
