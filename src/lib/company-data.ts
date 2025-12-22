@@ -10,10 +10,10 @@ export type Difficulty = 'Easy' | 'Medium' | 'Hard';
 export type WLB = 'Green' | 'Yellow' | 'Red';
 export type Learning = 'High' | 'Medium' | 'Low';
 export type Level =
-    | 'Internship' | 'Entry Level' | 'Mid Level' | 'Senior' | 'Principal' | 'Manager' | 'Director' | 'Executive'
+    | 'Internship' | 'Entry Level' | 'Mid Level' | 'Senior'
     | 'Staff' | 'Architect' | 'Expert'
-    | 'GET' | 'Engineer' | 'Assistant Manager' | 'Senior Manager' | 'Project Manager' | 'Chief' | 'DGM' | 'Senior General Manager'
-    | 'GT' | 'E1' | 'E2' | 'E3' | 'E4' | 'E1 (Executive)' | 'ET' | 'ET (Executive Trainee)'
+    | 'GET' | 'Engineer' | 'Assistant Manager' | 'Senior Manager'
+    | 'GT' | 'E1' | 'E2' | 'E3' | 'E4'
     | 'Scientist/Engineer-SC' | 'SD' | 'SE' | 'SF' | 'SG'
     | 'Design Trainee' | 'Probationary Officer' | 'Senior Engineer' | 'Construction Manager';
 
@@ -84,7 +84,7 @@ const CS_TIER1: Company[] = [
         companyType: 'Product',
         difficulty: 'Hard',
         internFriendly: true,
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal'],
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior'],
         salary: { minLPA: 32, maxLPA: 60, inHandPercent: 70 },
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Search, cloud and ads. Top-tier pay and benefits.',
@@ -512,7 +512,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Creative & document management software.',
         whyJoin: ['Creative Cloud Leader', 'Great WLB', 'Research Focus'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'atlassian',
@@ -529,7 +529,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Jira, Confluence — team collaboration tools.',
         whyJoin: ['Remote-First Forever', 'Great WLB', 'Top Compensation'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'uber',
@@ -585,7 +585,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Indian enterprise SaaS with wide product suite.',
         whyJoin: ['Profitable Bootstrap', 'Rural Offices', 'Great Food'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'postman',
@@ -636,7 +636,7 @@ const CS_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Customer engagement & CRM SaaS from India.',
         whyJoin: ['SaaS Pioneer', 'Great Culture', 'Public Company'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
 ];
 
@@ -656,7 +656,7 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'Indian payments and financial services platform.',
         whyJoin: ['High Scale Fintech', 'Fast Paced', 'Impact at Scale'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'phonepe',
@@ -679,7 +679,7 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'UPI and payments platform in India.',
         whyJoin: ['UPI Leader', 'Top Compensation', 'ESOP Buybacks'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'razorpay',
@@ -696,7 +696,7 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Payments infra for Indian merchants.',
         whyJoin: ['YCombinator Alumni', 'Fintech Innovation', 'Great Engineering'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'groww',
@@ -713,7 +713,7 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Investment platform with product & data teams.',
         whyJoin: ['Fast Growing Fintech', 'Modern Tech Stack', 'Ownership'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'zerodha',
@@ -730,7 +730,7 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Retail brokerage & trading platform.',
         whyJoin: ['Bootstrapped Unicorn', 'Tech First', 'No Marketing Clutter'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'cred',
@@ -781,7 +781,7 @@ const CS_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Low' },
         description: 'IT services with higher-tier digital practice.',
         whyJoin: ['Digital Projects', 'Upskilling', 'Job Security'],
-        levels: ['Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Entry Level', 'Mid Level', 'Senior']
     },
 ];
 
@@ -805,7 +805,7 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Global leader in wireless tech and mobile SoCs.',
         whyJoin: ['Wireless Leader', 'Top Pay in ECE', '5G Innovation'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'texas-instruments',
@@ -822,7 +822,7 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Analog chip design for power and industrial.',
         whyJoin: ['Analog Leader', 'Great Culture', 'Long Term Career'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'nvidia-hw',
@@ -839,7 +839,7 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'GPU computing leader with strong India team.',
         whyJoin: ['AI Hardware King', 'High Stocks', 'Cutting Edge Tech'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal', 'Architect']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Architect']
     },
     {
         id: 'intel',
@@ -856,7 +856,7 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'x86 chip pioneer with large India R&D.',
         whyJoin: ['CPU Pioneer', 'Great Benefits', 'Large Scale R&D'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'amd',
@@ -873,7 +873,7 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'CPU/GPU competitor to Intel/NVIDIA.',
         whyJoin: ['High Growth', 'CPU + GPU', 'Strong Engineering'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'arm',
@@ -890,7 +890,7 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'CPU architecture leader for mobile processors.',
         whyJoin: ['Mobile Architecture', 'Global Impact', 'Research Focus'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'broadcom',
@@ -907,7 +907,7 @@ const ECE_TIER1: Company[] = [
         culture: { wlb: 'Yellow', learning: 'High' },
         description: 'Networking chips and semiconductor solutions.',
         whyJoin: ['Connectivity Leader', 'High Pay', 'Acquisition Growth'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
 ];
 
@@ -927,7 +927,7 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'EDA tools leader for IC design.',
         whyJoin: ['EDA Market Leader', 'Deep Tech', 'Stable Career'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'cadence',
@@ -944,7 +944,7 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'EDA tools giant for analog/digital.',
         whyJoin: ['Design Automation', 'Innovation', 'Great Benefits'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'micron',
@@ -995,7 +995,7 @@ const ECE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Automotive electronics and sensors.',
         whyJoin: ['Automotive Leader', 'German Engineering', 'Stability'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Manager']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
 ];
 
@@ -1015,7 +1015,7 @@ const ECE_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'Design & tech services for automotive.',
         whyJoin: ['Design Services', 'Automotive Focus', 'Tata Group'],
-        levels: ['Entry Level', 'Mid Level', 'Senior', 'Project Manager']
+        levels: ['Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'ltts',
@@ -1032,7 +1032,7 @@ const ECE_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'Engineering services across domains.',
         whyJoin: ['Multi-domain Exposure', 'Global Projects', 'L&T Brand'],
-        levels: ['Entry Level', 'Mid Level', 'Senior', 'Project Manager']
+        levels: ['Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'bel',
@@ -1049,7 +1049,7 @@ const ECE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Defense PSU for electronics.',
         whyJoin: ['National Service', 'Job Security', 'Defense Tech'],
-        levels: ['Probationary Officer', 'Senior Engineer', 'Manager', 'DGM']
+        levels: ['Probationary Officer', 'Senior Engineer']
     },
 ];
 
@@ -1073,7 +1073,7 @@ const EEE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Global power and automation leader.',
         whyJoin: ['Energy Innovation', 'Global MNC', 'Great Training'],
-        levels: ['GET', 'Engineer', 'Senior Engineer', 'Manager']
+        levels: ['GET', 'Engineer', 'Senior Engineer']
     },
     {
         id: 'abb',
@@ -1090,7 +1090,7 @@ const EEE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Swiss power & automation multinational.',
         whyJoin: ['Robotics Leader', 'Sustainable Tech', 'European Culture'],
-        levels: ['GET', 'Engineer', 'Senior Engineer', 'Manager']
+        levels: ['GET', 'Engineer', 'Senior Engineer']
     },
     {
         id: 'schneider',
@@ -1107,7 +1107,7 @@ const EEE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'French energy management multinational.',
         whyJoin: ['Sustainability', 'Smart Grid focus', 'Great Culture'],
-        levels: ['GET', 'Engineer', 'Senior Engineer', 'Manager']
+        levels: ['GET', 'Engineer', 'Senior Engineer']
     },
 ];
 
@@ -1127,7 +1127,7 @@ const EEE_TIER2: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Power utility with renewable focus.',
         whyJoin: ['Renewable Energy', 'Tata Ethics', 'Green Transition'],
-        levels: ['GET', 'Assistant Manager', 'Manager', 'Senior Manager']
+        levels: ['GET', 'Assistant Manager', 'Senior Manager']
     },
     {
         id: 'lt-electrical',
@@ -1144,7 +1144,7 @@ const EEE_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'Indian conglomerate with electrical division.',
         whyJoin: ['Core Engineering', 'Construction Giant', 'Nation Building'],
-        levels: ['GET', 'Senior Engineer', 'Assistant Manager', 'Manager']
+        levels: ['GET', 'Senior Engineer', 'Assistant Manager']
     },
 ];
 
@@ -1164,7 +1164,7 @@ const EEE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Largest power producer PSU.',
         whyJoin: ['Maharatna Status', 'Best in Class Pay', 'Campus Townships'],
-        levels: ['E1 (Executive)', 'E2', 'E3', 'E4']
+        levels: ['E2', 'E3', 'E4']
     },
     {
         id: 'powergrid',
@@ -1181,7 +1181,7 @@ const EEE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Transmission grid operator PSU.',
         whyJoin: ['Grid Management', 'Stable Career', 'Government Perks'],
-        levels: ['ET (Executive Trainee)', 'Engineer', 'Manager']
+        levels: ['Engineer']
     },
     {
         id: 'bhel',
@@ -1198,7 +1198,7 @@ const EEE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Low' },
         description: 'Maharatna PSU for power equipment.',
         whyJoin: ['Heavy Industries', 'Manufacturing Scale', 'Work Life Balance'],
-        levels: ['ET', 'Engineer', 'Manager', 'DGM']
+        levels: ['Engineer']
     },
 ];
 
@@ -1222,7 +1222,7 @@ const CORE_TIER1: Company[] = [
         culture: { wlb: 'Green', learning: 'High' },
         description: 'Aerospace giant with India R&D.',
         whyJoin: ['Aviation Leader', 'Complex Problems', 'Global Mobility'],
-        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior', 'Principal']
+        levels: ['Internship', 'Entry Level', 'Mid Level', 'Senior']
     },
     {
         id: 'airbus',
@@ -1276,7 +1276,7 @@ const CORE_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'JLR parent with EV push.',
         whyJoin: ['EV Revolution', 'Automotive Legacy', 'Tata Brand'],
-        levels: ['GET', 'Manager', 'Senior General Manager']
+        levels: ['GET']
     },
     {
         id: 'mahindra',
@@ -1293,7 +1293,7 @@ const CORE_TIER2: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'SUV and tractor manufacturer.',
         whyJoin: ['Core Automotive', 'Off-road tech', 'Rise Philosophy'],
-        levels: ['GET', 'Manager', 'Senior Manager', 'DGM']
+        levels: ['GET', 'Senior Manager']
     },
     {
         id: 'bosch-auto',
@@ -1330,7 +1330,7 @@ const CORE_TIER3: Company[] = [
         culture: { wlb: 'Yellow', learning: 'Medium' },
         description: 'EPC giant with infrastructure projects.',
         whyJoin: ['Mega Projects', 'Construction Leader', 'Field Exposure'],
-        levels: ['GET', 'Construction Manager', 'Project Manager']
+        levels: ['GET', 'Construction Manager']
     },
     {
         id: 'tata-steel',
@@ -1347,7 +1347,7 @@ const CORE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Steel pioneer with Jamshedpur base.',
         whyJoin: ['Steel Manufacturing', 'Legacy', 'Employee Care'],
-        levels: ['GET', 'Manager', 'Senior Manager', 'Chief']
+        levels: ['GET', 'Senior Manager']
     },
     {
         id: 'ongc',
@@ -1381,7 +1381,7 @@ const CORE_TIER3: Company[] = [
         culture: { wlb: 'Green', learning: 'Medium' },
         description: 'Defense PSU for aircraft manufacturing.',
         whyJoin: ['Fighter Jets', 'Aviation Tech', 'Defense Service'],
-        levels: ['Design Trainee', 'Engineer', 'Manager']
+        levels: ['Design Trainee', 'Engineer']
     },
 ];
 

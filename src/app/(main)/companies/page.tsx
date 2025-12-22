@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { COMPANIES, Company, Major, Level, ALL_DOMAINS, ALL_ROLE_TYPES } from '@/lib/company-data';
 import { useUserStore } from '@/store/use-user-store';
-import { ChevronDown, ChevronUp, Bookmark, Star, MapPin, Building2, GraduationCap, Briefcase, Filter, X, Users, TrendingUp, Clock } from 'lucide-react';
+import { ChevronDown, ChevronUp, Bookmark, Star, MapPin, Building2, GraduationCap, Briefcase, Filter, X, Users, TrendingUp, Clock, Search } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CompaniesPage() {
@@ -232,10 +232,6 @@ export default function CompaniesPage() {
                                         <option value="Entry Level">Entry Level</option>
                                         <option value="Mid Level">Mid Level</option>
                                         <option value="Senior">Senior</option>
-                                        <option value="Principal">Principal</option>
-                                        <option value="Manager">Manager</option>
-                                        <option value="Director">Director</option>
-                                        <option value="Executive">Executive</option>
                                     </select>
                                 </div>
                             </div>
@@ -260,7 +256,10 @@ export default function CompaniesPage() {
                 {/* Company Cards - 3 Column Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filtered.length === 0 ? (
-                        <div className="text-center py-16 text-muted-foreground">
+                        <div className="col-span-full text-center py-16 text-muted-foreground flex flex-col items-center justify-center">
+                            <div className="bg-muted p-4 rounded-full mb-4">
+                                <Search className="w-8 h-8 text-muted-foreground" />
+                            </div>
                             <p className="text-lg mb-2">No companies found matching your criteria.</p>
                             <button onClick={clearAllFilters} className="text-foreground underline">Clear all filters</button>
                         </div>
