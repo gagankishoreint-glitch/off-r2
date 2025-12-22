@@ -111,7 +111,12 @@ export function generateRealityPage(offerA: Offer, offerB: Offer): Block[] {
     add('heading-2', 'The Verdict');
 
     // Salary Diff Analysis
-    if (parseFloat(percentDiff) > 25) {
+    // Salary Diff Analysis
+    if (ctcA === 0 && ctcB === 0) {
+        add('paragraph', `📊 **Financials**: No offer details provided. Enter your CTC to see which company gives you more in-hand.`);
+    } else if (ctcA === 0 || ctcB === 0) {
+        add('paragraph', `⚠️ **Financials**: Please provide CTC for both offers to get a fair financial comparison.`);
+    } else if (parseFloat(percentDiff) > 25) {
         add('paragraph', `💰 **Financials**: ${higherName} is the clear winner, offering ~${percentDiff}% higher pay. Unless the role at ${lowerName} is your dream domain, the money at ${higherName} is hard to ignore.`);
     } else {
         add('paragraph', `⚖️ **Financials**: The pay gap is small (~${percentDiff}%). Focus on the role and culture instead of the money.`);

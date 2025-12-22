@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { COMPANIES, Company, Major, Level, ALL_DOMAINS, ALL_ROLE_TYPES } from '@/lib/company-data';
 import { useUserStore } from '@/store/use-user-store';
-import { ChevronDown, ChevronUp, Bookmark, Star, MapPin, Building2, GraduationCap, Briefcase, Filter, X, Users, TrendingUp, Clock, Search } from 'lucide-react';
+import { ChevronDown, ChevronUp, Bookmark, Star, MapPin, Building2, GraduationCap, Briefcase, Filter, X, Users, TrendingUp, Clock, Search, Heart } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CompaniesPage() {
@@ -21,7 +21,7 @@ export default function CompaniesPage() {
     const [internFriendlyFilter, setInternFriendlyFilter] = useState<boolean | null>(null);
     const [levelFilter, setLevelFilter] = useState<string>('All');
 
-    const { isLoggedIn } = useUserStore();
+    const { isLoggedIn, toggleWishlist, isInWishlist } = useUserStore();
 
     // Filter companies
     const filtered = COMPANIES.filter(c => {
@@ -272,6 +272,8 @@ export default function CompaniesPage() {
                                 onToggle={() => toggleCardExpand(company.id)}
                                 getWLBStyle={getWLBStyle}
                                 getDifficultyStyle={getDifficultyStyle}
+                                isWishlisted={isInWishlist(company.id)}
+                                onToggleWishlist={() => toggleWishlist(company.id)}
                             />
                         ))
                     )}
@@ -287,13 +289,17 @@ function CompanyCard({
     isExpanded,
     onToggle,
     getWLBStyle,
-    getDifficultyStyle
+    getDifficultyStyle,
+    isWishlisted,
+    onToggleWishlist
 }: {
     company: Company;
     isExpanded: boolean;
     onToggle: () => void;
     getWLBStyle: (wlb: string) => string;
     getDifficultyStyle: (d: string) => string;
+    isWishlisted: boolean;
+    onToggleWishlist: () => void;
 }) {
     return (
         <Link href={`/companies/${company.id}`} className="block">
@@ -313,7 +319,17 @@ function CompanyCard({
                     </div>
 
                     {/* Compact Salary */}
-                    <div className="text-right shrink-0">
+                    <div className="text-right shrink-0 flex flex-col items-end">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                onToggleWishlist();
+                            }}
+                            className="mb-2 text-muted-foreground hover:text-red-500 transition-colors"
+                        >
+                            <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-red-500 text-red-500' : ''}`} />
+                        </button>
                         <div className="text-base font-bold text-foreground whitespace-nowrap">
                             ₹{company.salary.minLPA}-{company.salary.maxLPA}L
                         </div>

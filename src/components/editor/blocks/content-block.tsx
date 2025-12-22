@@ -72,7 +72,15 @@ export function ContentBlock({ block, documentId, readOnly = false }: ContentBlo
                     onKeyDown={handleKeyDown}
                     onInput={handleChange}
                 >
-                    {block.content}
+                    {readOnly ? (
+                        <span dangerouslySetInnerHTML={{
+                            __html: block.content
+                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                .replace(/__(.*?)__/g, '<em>$1</em>')
+                        }} />
+                    ) : (
+                        block.content
+                    )}
                 </p>
             </div>
         )
@@ -97,9 +105,14 @@ export function ContentBlock({ block, documentId, readOnly = false }: ContentBlo
             const metrics = data.metrics || [];
 
             // Calculate winner for salary
+            // Calculate winner for salary
             const salaryMetric = metrics.find((m: any) => m.label === 'CTC');
             const parseValue = (val: string) => parseFloat(val.replace(/[^0-9.]/g, '')) || 0;
-            const aWins = salaryMetric ? parseValue(salaryMetric.valueA) > parseValue(salaryMetric.valueB) : false;
+            const valA = salaryMetric ? parseValue(salaryMetric.valueA) : 0;
+            const valB = salaryMetric ? parseValue(salaryMetric.valueB) : 0;
+
+            const aWins = valA > valB;
+            const bWins = valB > valA;
 
             return (
                 <div className="my-8 space-y-6">
@@ -149,9 +162,9 @@ export function ContentBlock({ block, documentId, readOnly = false }: ContentBlo
                         {/* Company B Card */}
                         <div className={cn(
                             "relative p-6 rounded-2xl border-2 transition-all",
-                            !aWins ? "border-green-500 bg-green-50 dark:bg-green-950/20" : "border-border bg-card"
+                            bWins ? "border-green-500 bg-green-50 dark:bg-green-950/20" : "border-border bg-card"
                         )}>
-                            {!aWins && (
+                            {bWins && (
                                 <div className="absolute -top-3 left-6">
                                     <span className="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full flex items-center gap-1">
                                         <ArrowRight className="w-3 h-3 rotate-[-45deg]" />
@@ -196,13 +209,13 @@ export function ContentBlock({ block, documentId, readOnly = false }: ContentBlo
                         <div className="relative h-8 bg-background rounded-lg overflow-hidden">
                             <div
                                 className="absolute left-0 top-0 h-full bg-blue-500 transition-all flex items-center justify-end pr-2"
-                                style={{ width: aWins ? '60%' : '40%' }}
+                                style={{ width: aWins ? '60%' : bWins ? '40%' : '50%' }}
                             >
                                 <span className="text-xs font-bold text-white">{data.companyA}</span>
                             </div>
                             <div
                                 className="absolute right-0 top-0 h-full bg-orange-500 transition-all flex items-center justify-start pl-2"
-                                style={{ width: !aWins ? '60%' : '40%' }}
+                                style={{ width: bWins ? '60%' : aWins ? '40%' : '50%' }}
                             >
                                 <span className="text-xs font-bold text-white">{data.companyB}</span>
                             </div>

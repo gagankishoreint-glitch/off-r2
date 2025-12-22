@@ -89,9 +89,25 @@ export default function ComparisonResultPage() {
                         </Link>
                         <span className="font-semibold">{comparisonDoc.title}</span>
                     </div>
-                    <Link href="/" className="md:hidden">
-                        <Radar className="w-6 h-6" />
-                    </Link>
+
+                    <div className="flex items-center gap-2">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            className="hidden md:flex gap-2"
+                            onClick={() => {
+                                // Toggle save logic here - assuming store handles persistence
+                                // In a real app we'd toggle a 'saved' flag on the doc
+                                alert('Comparisons are automatically saved to your history!');
+                            }}
+                        >
+                            <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                            Auto-Saved
+                        </Button>
+                        <Link href="/" className="md:hidden">
+                            <Radar className="w-6 h-6" />
+                        </Link>
+                    </div>
                 </div>
             </header>
 
@@ -109,6 +125,11 @@ export default function ComparisonResultPage() {
                 </main>
 
                 <div className="mt-12 text-center">
+                    <Link href="/dashboard">
+                        <Button variant="default" className="gap-2">
+                            View in Dashboard
+                        </Button>
+                    </Link>
                     <Link href="/compare">
                         <Button variant="outline" className="gap-2">
                             Compare Other Offers

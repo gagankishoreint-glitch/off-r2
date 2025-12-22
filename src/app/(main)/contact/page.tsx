@@ -27,52 +27,49 @@ export default function ContactPage() {
 
                 {/* Team Contact Card */}
                 <div className="mb-12">
-                    <h2 className="text-2xl font-heading font-semibold mb-8 text-foreground">
-                        Project Leader
-                    </h2>
                     <div className="grid sm:grid-cols-1 gap-6 max-w-2xl mx-auto">
-                        <div className="p-8 rounded-xl bg-background border border-border hover:shadow-lg transition-shadow">
-                            <div className="flex items-start gap-6">
-                                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center shrink-0">
-                                    <Mail className="w-8 h-8 text-foreground" />
+                        <div className="p-8 rounded-2xl bg-card border border-border/50 shadow-sm hover:shadow-md transition-all">
+                            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left">
+                                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                                    <Mail className="w-8 h-8 text-primary" />
                                 </div>
-                                <div className="flex-1">
-                                    <h3 className="text-2xl font-heading font-bold mb-1 text-foreground">
-                                        {teamLeader.name}
-                                    </h3>
-                                    <p className="text-lg text-muted-foreground font-medium mb-4">
-                                        {teamLeader.role}
-                                    </p>
+                                <div className="flex-1 space-y-4">
+                                    <div>
+                                        <h3 className="text-2xl font-heading font-bold text-foreground">
+                                            {teamLeader.name}
+                                        </h3>
+                                        <p className="text-primary font-medium">
+                                            {teamLeader.role}
+                                        </p>
+                                    </div>
 
-                                    <div className="flex flex-col gap-3">
-                                        {/* Email */}
+                                    <div className="flex flex-col gap-2">
                                         <a
                                             href={`mailto:${teamLeader.email}`}
-                                            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                                            className="inline-flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors font-medium bg-muted/50 px-4 py-2 rounded-lg"
                                         >
                                             <Send className="w-4 h-4" />
                                             {teamLeader.email}
                                         </a>
 
-                                        {/* Socials */}
-                                        <div className="flex items-center gap-4 mt-2">
+                                        <div className="flex justify-center md:justify-start items-center gap-3 mt-2">
                                             <a
                                                 href={teamLeader.linkedin}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-sm px-4 py-2 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+                                                className="inline-flex items-center gap-2 text-sm px-4 py-2 bg-[#0077b5]/10 text-[#0077b5] dark:text-[#0077b5] rounded-lg hover:bg-[#0077b5]/20 transition-colors font-semibold"
                                             >
                                                 <Linkedin className="w-4 h-4" />
-                                                LinkedIn <ExternalLink className="w-3 h-3 ml-1" />
+                                                LinkedIn
                                             </a>
                                             <a
                                                 href={teamLeader.github}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-sm px-4 py-2 bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                                className="inline-flex items-center gap-2 text-sm px-4 py-2 bg-foreground/5 text-foreground rounded-lg hover:bg-foreground/10 transition-colors font-semibold"
                                             >
                                                 <Github className="w-4 h-4" />
-                                                GitHub <ExternalLink className="w-3 h-3 ml-1" />
+                                                GitHub
                                             </a>
                                         </div>
                                     </div>

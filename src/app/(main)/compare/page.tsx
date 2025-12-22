@@ -17,8 +17,8 @@ export default function ComparePage() {
     const createDocument = useDocumentStore((state) => state.createDocument);
     const updateDocument = useDocumentStore((state) => state.updateDocument);
 
-    const [offerA, setOfferA] = useState<Partial<Offer>>({ company: '', ctc: 0 });
-    const [offerB, setOfferB] = useState<Partial<Offer>>({ company: '', ctc: 0 });
+    const [offerA, setOfferA] = useState<Partial<Offer>>({ company: '', ctc: 0, role: '' });
+    const [offerB, setOfferB] = useState<Partial<Offer>>({ company: '', ctc: 0, role: '' });
 
     const handleRunAnalysis = () => {
         const fullOfferA = { ...offerA, id: 'a' } as Offer;

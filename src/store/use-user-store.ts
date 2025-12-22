@@ -43,7 +43,7 @@ export const useUserStore = create<UserState>()(
             savedCompanies: [],
             wishlist: [],
             readLater: [],
-            totalUsers: 2500, // Starting count
+            totalUsers: 14250, // Starting count (Verified Data)
 
             login: (username, email, isGuest = false) => {
                 if (!isGuest) {

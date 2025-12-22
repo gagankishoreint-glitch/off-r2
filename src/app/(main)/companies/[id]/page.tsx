@@ -2,15 +2,19 @@
 
 import { COMPANIES, TIER_TOOLTIPS } from '@/lib/company-data';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, MapPin, Building2, TrendingUp, Clock, GraduationCap, Briefcase, DollarSign, Users } from 'lucide-react';
+import { ArrowLeft, MapPin, Building2, TrendingUp, Clock, GraduationCap, Briefcase, DollarSign, Users, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useUserStore } from '@/store/use-user-store';
+import { cn } from '@/lib/utils';
 
 export default function CompanyDetailPage() {
     const params = useParams();
     const id = params?.id as string;
 
     const company = COMPANIES.find(c => c.id === id);
+    const { toggleWishlist, isInWishlist } = useUserStore();
+    const isSaved = company ? isInWishlist(company.id) : false;
 
     if (!company) {
         return (
@@ -58,15 +62,29 @@ export default function CompanyDetailPage() {
                 {/* Header Card */}
                 <div className="bg-card border border-border rounded-xl p-8 mb-8">
                     <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-6">
-                        <div>
-                            <div className="flex items-center gap-3 mb-3">
-                                <h1 className="text-3xl font-bold text-foreground">{company.name}</h1>
-                                <span
-                                    className={`px-3 py-1 text-sm font-medium rounded-full ${getTierStyle(company.tier)}`}
-                                    title={TIER_TOOLTIPS[company.tier]}
+                        <div className="flex-1">
+                            <div className="flex items-center justify-between md:justify-start gap-4 mb-3">
+                                <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
+                                    {company.name}
+                                    <span
+                                        className={`px-3 py-1 text-sm font-medium rounded-full ${getTierStyle(company.tier)}`}
+                                        title={TIER_TOOLTIPS[company.tier]}
+                                    >
+                                        {company.tier}
+                                    </span>
+                                </h1>
+                                <button
+                                    onClick={() => toggleWishlist(company.id)}
+                                    className={cn(
+                                        "p-2 rounded-full transition-all border",
+                                        isSaved
+                                            ? "bg-red-50 border-red-200 text-red-500 hover:bg-red-100"
+                                            : "bg-background border-border text-muted-foreground hover:text-foreground hover:bg-muted"
+                                    )}
+                                    title={isSaved ? "Remove from Wishlist" : "Add to Wishlist"}
                                 >
-                                    {company.tier}
-                                </span>
+                                    <Heart className={cn("w-5 h-5", isSaved && "fill-current")} />
+                                </button>
                             </div>
 
                             <div className="flex flex-wrap gap-2 mb-4">

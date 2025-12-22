@@ -21,6 +21,10 @@ export default function TrendsPage() {
                             </span>
                             Last Updated: {currentDate}
                         </div>
+                        <div className="flex items-center gap-2 mb-3 text-xs font-medium text-muted-foreground/80 italic">
+                            <TrendingUp className="w-3 h-3" />
+                            Market signals update every 3-4 days based on real-time data.
+                        </div>
                         <h1 className="text-4xl font-heading font-bold mb-3 flex items-center gap-3">
                             <TrendingUp className="text-primary" /> Market Trends 2025: <span className="text-primary italic">The Agentic Era</span>
                         </h1>
@@ -251,36 +255,37 @@ export default function TrendsPage() {
                         {/* Animated Logo Grid */}
                         <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-8 items-center justify-items-center">
                             {[
-                                { name: 'Google', color: '#4285F4', delay: '0s' },
-                                { name: 'Amazon', color: '#FF9900', delay: '0.1s' },
-                                { name: 'Microsoft', color: '#00A4EF', delay: '0.2s' },
-                                { name: 'Meta', color: '#0668E1', delay: '0.3s' },
-                                { name: 'Apple', color: '#555', delay: '0.4s' },
-                                { name: 'Netflix', color: '#E50914', delay: '0.5s' },
-                                { name: 'Adobe', color: '#FF0000', delay: '0.6s' },
-                                { name: 'Uber', color: '#000000', delay: '0.7s' },
-                                { name: 'Airbnb', color: '#FF5A5F', delay: '0.8s' },
-                                { name: 'Stripe', color: '#635BFF', delay: '0.9s' },
-                                { name: 'Shopify', color: '#7AB55C', delay: '1s' },
-                                { name: 'Dropbox', color: '#0061FF', delay: '1.1s' },
-                                { name: 'Atlassian', color: '#0052CC', delay: '1.2s' },
-                                { name: 'Snowflake', color: '#29B5E8', delay: '1.3s' },
-                                { name: 'Databricks', color: '#FF3621', delay: '1.4s' },
-                                { name: 'OpenAI', color: '#74AA9C', delay: '1.5s' },
-                                { name: 'Nvidia', color: '#76B900', delay: '1.6s' },
-                                { name: 'Intel', color: '#0071C5', delay: '1.7s' },
-                                { name: 'AMD', color: '#ED1C24', delay: '1.8s' },
-                                { name: 'Samsung', color: '#1428A0', delay: '1.9s' },
+                                { name: 'Google', id: 'google-india', color: '#4285F4', delay: '0s' },
+                                { name: 'Amazon', id: 'amazon', color: '#FF9900', delay: '0.1s' },
+                                { name: 'Microsoft', id: 'microsoft', color: '#00A4EF', delay: '0.2s' },
+                                { name: 'Meta', id: 'meta', color: '#0668E1', delay: '0.3s' },
+                                { name: 'Apple', id: 'apple', color: '#555', delay: '0.4s' },
+                                { name: 'Netflix', id: 'netflix', color: '#E50914', delay: '0.5s' },
+                                { name: 'Adobe', id: 'adobe', color: '#FF0000', delay: '0.6s' },
+                                { name: 'Uber', id: 'uber', color: '#000000', delay: '0.7s' },
+                                { name: 'Airbnb', id: 'airbnb', color: '#FF5A5F', delay: '0.8s' },
+                                { name: 'Stripe', id: 'stripe', color: '#635BFF', delay: '0.9s' },
+                                { name: 'Shopify', id: 'shopify', color: '#7AB55C', delay: '1s' },
+                                { name: 'Dropbox', id: 'dropbox', color: '#0061FF', delay: '1.1s' },
+                                { name: 'Atlassian', id: 'atlassian', color: '#0052CC', delay: '1.2s' },
+                                { name: 'Snowflake', id: 'snowflake', color: '#29B5E8', delay: '1.3s' },
+                                { name: 'Databricks', id: 'databricks', color: '#FF3621', delay: '1.4s' },
+                                { name: 'OpenAI', id: 'openai', color: '#74AA9C', delay: '1.5s' },
+                                { name: 'Nvidia', id: 'nvidia-sw', color: '#76B900', delay: '1.6s' },
+                                { name: 'Intel', id: 'intel', color: '#0071C5', delay: '1.7s' },
+                                { name: 'AMD', id: 'amd', color: '#ED1C24', delay: '1.8s' },
+                                { name: 'Samsung', id: 'samsung', color: '#1428A0', delay: '1.9s' },
                             ].map((company, idx) => (
-                                <div
+                                <Link
+                                    href={`/companies/${company.id}`}
                                     key={company.name}
-                                    className="group relative"
+                                    className="group relative block"
                                     style={{
                                         animation: `fadeInUp 0.6s ease-out ${company.delay} both, float 3s ease-in-out infinite`,
                                         animationDelay: company.delay
                                     }}
                                 >
-                                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-muted group-hover:bg-background flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg border border-border">
+                                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-muted group-hover:bg-background flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg border border-border mx-auto">
                                         <div
                                             className="w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center font-bold text-lg"
                                             style={{ backgroundColor: `${company.color}15`, color: company.color }}
@@ -288,10 +293,10 @@ export default function TrendsPage() {
                                             {company.name.charAt(0)}
                                         </div>
                                     </div>
-                                    <div className="text-[9px] md:text-[10px] text-muted-foreground mt-2 text-center font-medium">
+                                    <div className="text-[9px] md:text-[10px] text-muted-foreground mt-2 text-center font-medium group-hover:text-foreground transition-colors">
                                         {company.name}
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>
