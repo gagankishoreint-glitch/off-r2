@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function AboutPage() {
     const teamMembers = [
-        { name: "Gagan Kishore B", role: "Leader", email: "gagankishoreint@gmail.com", avatar: "GB" },
-        { name: "Kushal Mohan", role: "Developer", email: "kushalmohan0512@gmail.com", avatar: "KM" },
-        { name: "Dev Parvathareddy", role: "Developer", email: "devparvathareddy@gmail.com", avatar: "DP" }
+        { name: "Gagan Kishore B", role: "Leader", email: "gagankishoreint@gmail.com", github: "https://github.com/gagankishoreint-glitch", avatar: "GB" },
+        { name: "Kushal Mohan", role: "Developer", email: "kushalmohan0512@gmail.com", github: "https://github.com/kushal040511", avatar: "KM" },
+        { name: "Dev Parvathareddy", role: "Developer", email: "devparvathareddy@gmail.com", github: "https://github.com/GokuRoseSSJ", avatar: "DP" }
     ];
 
     return (
@@ -76,7 +76,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Team Section */}
-                <div className="mb-16">
+                <div className="mb-12">
                     <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12 text-foreground">
                         Meet the Team
                     </h2>

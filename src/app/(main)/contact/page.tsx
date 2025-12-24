@@ -17,12 +17,14 @@ export default function ContactPage() {
             name: "Kushal Mohan",
             role: "Developer",
             email: "kushalmohan0512@gmail.com",
+            github: "https://github.com/kushal040511",
             avatar: "KM"
         },
         {
             name: "Dev Parvathareddy",
             role: "Developer",
             email: "devparvathareddy@gmail.com",
+            github: "https://github.com/GokuRoseSSJ",
             avatar: "DP"
         }
     ];
@@ -66,26 +68,31 @@ export default function ContactPage() {
                                         {member.email}
                                     </a>
 
-                                    {member.linkedin && member.github && (
+
+                                    {(member.linkedin || member.github) && (
                                         <div className="flex items-center gap-2 mt-2">
-                                            <a
-                                                href={member.linkedin}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-xs px-3 py-2 bg-[#0077b5]/10 text-[#0077b5] rounded-lg hover:bg-[#0077b5]/20 transition-colors font-semibold"
-                                            >
-                                                <Linkedin className="w-4 h-4" />
-                                                LinkedIn
-                                            </a>
-                                            <a
-                                                href={member.github}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-xs px-3 py-2 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors font-semibold"
-                                            >
-                                                <Github className="w-4 h-4" />
-                                                GitHub
-                                            </a>
+                                            {member.linkedin && (
+                                                <a
+                                                    href={member.linkedin}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-2 text-xs px-3 py-2 bg-[#0077b5]/10 text-[#0077b5] rounded-lg hover:bg-[#0077b5]/20 transition-colors font-semibold"
+                                                >
+                                                    <Linkedin className="w-4 h-4" />
+                                                    LinkedIn
+                                                </a>
+                                            )}
+                                            {member.github && (
+                                                <a
+                                                    href={member.github}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-2 text-xs px-3 py-2 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors font-semibold"
+                                                >
+                                                    <Github className="w-4 h-4" />
+                                                    GitHub
+                                                </a>
+                                            )}
                                         </div>
                                     )}
                                 </div>
