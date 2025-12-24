@@ -27,6 +27,7 @@ export function HorizontalNav() {
         { href: "/companies", label: "Explore Companies" },
         { href: "/trends", label: "Market Trends" },
         { href: "/calculator", label: "CTC Calculator" },
+        { href: "/resume", label: "Resume Scanner" },
         { href: "/compare", label: "Compare Offers" },
         { href: "/about", label: "About" },
         ...(isLoggedIn ? [{ href: "/dashboard", label: "Dashboard" }] : []),
@@ -48,7 +49,7 @@ export function HorizontalNav() {
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                    "px-2.5 py-2 text-xs font-medium rounded-md transition-colors whitespace-nowrap",
+                                    "px-2 py-2 text-xs font-medium rounded-md transition-colors whitespace-nowrap",
                                     pathname === link.href || pathname?.startsWith(link.href)
                                         ? "text-foreground bg-muted"
                                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
