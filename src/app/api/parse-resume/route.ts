@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // @ts-ignore
-const pdf = require('pdf-parse');
-// @ts-ignore
 const mammoth = require('mammoth');
 
 export async function POST(req: NextRequest) {
@@ -17,19 +15,15 @@ export async function POST(req: NextRequest) {
         const buffer = Buffer.from(await file.arrayBuffer());
         let text = '';
 
-        if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-            const data = await pdf(buffer);
-            text = data.text;
-        } else if (
+        if (
             file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
             file.name.endsWith('.docx')
         ) {
+            // Handle DOCX files
             const result = await mammoth.extractRawText({ buffer });
             text = result.value;
-        } else if (file.type === 'text/plain' || file.name.endsWith('.txt')) {
-            text = buffer.toString('utf-8');
         } else {
-            return NextResponse.json({ error: 'Unsupported file format. Please upload PDF, DOCX, or TXT.' }, { status: 400 });
+            return NextResponse.json({ error: 'Unsupported file format. PDFs are parsed client-side.' }, { status: 400 });
         }
 
         // Basic clean up
