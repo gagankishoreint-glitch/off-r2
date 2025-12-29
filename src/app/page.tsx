@@ -5,12 +5,19 @@ import { Radar, Sun, Moon, DollarSign, Zap, Target } from "lucide-react";
 import { useTheme } from "@/store/use-theme-store";
 import { useUserStore } from "@/store/use-user-store";
 
+import AuthModal from "@/components/auth/AuthModal";
+import { useState } from "react";
+
 export default function LandingPage() {
     const { theme, toggleTheme } = useTheme();
     const userCount = useUserStore(state => state.getUserCount());
+    const [showAuthModal, setShowAuthModal] = useState(false);
 
     return (
         <div className="flex flex-col min-h-screen bg-background">
+            {/* Auth Modal */}
+            <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} defaultTab="signup" />
+
             {/* Navigation */}
             <header className="px-6 lg:px-12 h-16 flex items-center bg-background">
                 <Link className="flex items-center gap-2 font-bold text-xl" href="/">
@@ -38,16 +45,18 @@ export default function LandingPage() {
                             <Moon className="w-5 h-5 text-muted-foreground" />
                         )}
                     </button>
-                    <Link href="/login">
-                        <span className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                            Log in
-                        </span>
-                    </Link>
-                    <Link href="/companies">
-                        <button className="px-5 py-2.5 bg-foreground text-background text-sm font-medium rounded-md hover:bg-foreground/90 transition-colors">
-                            Join Community
-                        </button>
-                    </Link>
+                    <button
+                        onClick={() => setShowAuthModal(true)}
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        Log in
+                    </button>
+                    <button
+                        onClick={() => setShowAuthModal(true)}
+                        className="px-5 py-2.5 bg-foreground text-background text-sm font-medium rounded-md hover:bg-foreground/90 transition-colors"
+                    >
+                        Join Community
+                    </button>
                 </nav>
             </header>
 
