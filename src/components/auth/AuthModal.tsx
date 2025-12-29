@@ -38,7 +38,7 @@ export default function AuthModal({ isOpen, onClose, defaultTab = 'login' }: Aut
         try {
             await signInWithGoogle();
             onClose();
-            router.push('/companies');
+            router.push('/dashboard');
         } catch (err: any) {
             setError(err.message || 'Google sign-in failed');
         } finally {
@@ -69,7 +69,7 @@ export default function AuthModal({ isOpen, onClose, defaultTab = 'login' }: Aut
                 await signUpWithEmail(email, password);
             }
             onClose();
-            router.push('/companies');
+            router.push('/dashboard');
         } catch (err: any) {
             setError(err.message || `${activeTab === 'login' ? 'Sign in' : 'Sign up'} failed`);
         } finally {

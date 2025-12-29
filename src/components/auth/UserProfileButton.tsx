@@ -5,7 +5,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { User, LogOut, Settings, CreditCard } from 'lucide-react';
+import { User, LogOut, Settings, CreditCard, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
 
@@ -99,6 +99,17 @@ export default function UserProfileButton() {
                         </div>
 
                         <div className="p-1">
+                            <button
+                                onClick={() => {
+                                    setShowMenu(false);
+                                    router.push('/dashboard');
+                                }}
+                                className="w-full flex items-center gap-3 px-3 py-2 text-sm text-white/80 hover:bg-white/5 rounded-md transition-colors"
+                            >
+                                <LayoutDashboard className="w-4 h-4" />
+                                Dashboard
+                            </button>
+
                             <button
                                 onClick={() => {
                                     setShowMenu(false);
