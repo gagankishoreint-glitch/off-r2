@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useCurrencyStore } from "@/store/use-currency-store";
 import { CURRENCIES, CurrencyCode } from "@/lib/currency";
 import Image from "next/image";
+import UserProfileButton from "@/components/auth/UserProfileButton";
 
 export function HorizontalNav() {
     const pathname = usePathname();
@@ -100,37 +101,8 @@ export function HorizontalNav() {
                             )}
                         </button>
 
-                        {/* User Info / Auth */}
-                        {isLoggedIn ? (
-                            <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-2 px-3 py-1.5 bg-muted rounded-md">
-                                    <User className="w-4 h-4" />
-                                    <span className="text-sm font-medium">
-                                        {username}
-                                    </span>
-                                </div>
-                                <button
-                                    onClick={handleLogout}
-                                    className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                                    title="Logout"
-                                >
-                                    <LogOut className="w-5 h-5" />
-                                </button>
-                            </div>
-                        ) : (
-                            <>
-                                <Link href="/login">
-                                    <span className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                                        Log in
-                                    </span>
-                                </Link>
-                                <Link href="/companies">
-                                    <button className="px-5 py-2.5 bg-foreground text-background text-sm font-medium rounded-md hover:bg-foreground/90 transition-colors">
-                                        Sign Up
-                                    </button>
-                                </Link>
-                            </>
-                        )}
+                        {/* Firebase Auth - User Profile Button */}
+                        <UserProfileButton />
                     </div>
 
                     {/* Mobile Menu Button */}
