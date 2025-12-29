@@ -56,6 +56,8 @@ There is no unified system that helps students compare opportunities using **rea
 - **Tailwind CSS**
 - **Zustand**
 - **Vercel**
+- **Gemini**
+- **Google Drive**
 
 
 
