@@ -4,11 +4,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { User, LogOut, Settings, CreditCard } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
 
 export default function UserProfileButton() {
+    const router = useRouter();
     const { user, signOut, loading, isConfigured } = useAuth();
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -100,7 +102,7 @@ export default function UserProfileButton() {
                             <button
                                 onClick={() => {
                                     setShowMenu(false);
-                                    // Navigate to profile
+                                    router.push('/settings');
                                 }}
                                 className="w-full flex items-center gap-3 px-3 py-2 text-sm text-white/80 hover:bg-white/5 rounded-md transition-colors"
                             >
@@ -111,7 +113,7 @@ export default function UserProfileButton() {
                             <button
                                 onClick={() => {
                                     setShowMenu(false);
-                                    // Navigate to subscription
+                                    router.push('/subscription');
                                 }}
                                 className="w-full flex items-center gap-3 px-3 py-2 text-sm text-white/80 hover:bg-white/5 rounded-md transition-colors"
                             >
