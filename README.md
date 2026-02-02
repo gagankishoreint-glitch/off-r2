@@ -118,5 +118,3 @@ npm run dev
 - [ ] Premium features
 
 ---
-
-Built with ❤️ for students making tough career decisions
