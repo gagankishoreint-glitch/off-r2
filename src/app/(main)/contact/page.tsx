@@ -12,20 +12,6 @@ export default function ContactPage() {
             linkedin: "https://www.linkedin.com/in/gagankishore",
             github: "https://github.com/gagankishoreint-glitch",
             avatar: "GB"
-        },
-        {
-            name: "Kushal Mohan",
-            role: "Developer",
-            email: "kushalmohan0512@gmail.com",
-            github: "https://github.com/kushal040511",
-            avatar: "KM"
-        },
-        {
-            name: "Dev Parvathareddy",
-            role: "Developer",
-            email: "devparvathareddy@gmail.com",
-            github: "https://github.com/GokuRoseSSJ",
-            avatar: "DP"
         }
     ];
 
